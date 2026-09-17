@@ -5,7 +5,7 @@ export const FAQS_DATA: FAQItem[] = [
     id: 'faq-location',
     category: 'store',
     question: 'Where is the Shree Mewa physical store located?',
-    answer: 'Shree Mewa is located on Main Road, Ramgarh Cantonment, Jharkhand (near Gandhi Chowk / Cantt Market). You are warmly invited to visit our showroom to experience our complete range of premium dry fruits, examine the gift box craftsmanship in person, and taste select harvests.'
+    answer: 'Shree Mewa is located at Shop No. B-15, Bazar Samiti, Ramgarh Cantonment, Jharkhand — 829122. You are warmly invited to visit our showroom to experience our complete range of premium dry fruits, examine the gift box craftsmanship in person, and taste select harvests.'
   },
   {
     id: 'faq-dry-fruits',

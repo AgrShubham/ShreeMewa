@@ -16,6 +16,7 @@
     --brand-gold-dark: #9A7730;
     --brand-border: #E8DFD5;
     --brand-border-light: #F0EAE1;
+    --nav-height: 108px;
   }
 
   body {
@@ -48,4 +49,19 @@
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #C5A059;
+}
+
+/* Print styling for Lookbook and Catalogue */
+@media print {
+  header,
+  footer,
+  aside,
+  .no-print {
+    display: none !important;
+  }
+
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
 }

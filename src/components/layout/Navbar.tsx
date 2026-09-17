@@ -27,6 +27,17 @@ export const Navbar: React.FC<NavbarProps> = ({
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      const originalOverflow = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      return () => {
+        document.body.style.overflow = originalOverflow;
+      };
+    }
+  }, [mobileMenuOpen]);
+
   // Close mobile menu on navigate
   const handleNavClick = (page: ActivePage) => {
     onNavigate(page);
@@ -163,14 +174,14 @@ export const Navbar: React.FC<NavbarProps> = ({
 
       {/* Mobile Drawer Menu (Collapsible) */}
       {mobileMenuOpen && (
-        <div className="lg:hidden fixed inset-x-0 top-[calc(var(--nav-height,78px))] bottom-0 z-40 bg-[#FAF7F2] overflow-y-auto border-t border-[#E8DFD5] animate-in fade-in slide-in-from-top-4 duration-200">
+        <div className="lg:hidden fixed inset-x-0 top-[var(--nav-height,108px)] bottom-0 z-50 bg-[#FAF7F2] overflow-y-auto border-t border-[#E8DFD5] animate-in fade-in slide-in-from-top-4 duration-200">
           <div className="p-6 space-y-6 max-w-md mx-auto">
             {/* Store Location Pill */}
             <div className="flex items-center gap-2.5 p-3 rounded-xl bg-white border border-[#E8DFD5] shadow-xs">
               <MapPin className="w-5 h-5 text-[#C5A059] shrink-0" />
               <div className="text-left text-xs">
                 <p className="font-semibold text-[#2A1810]">Physical Store in Ramgarh</p>
-                <p className="text-[#7A5840]">Main Road, Ramgarh Cantonment, Jharkhand</p>
+                <p className="text-[#7A5840]">{BUSINESS_CONFIG.addressLine}, {BUSINESS_CONFIG.city}</p>
               </div>
             </div>
 

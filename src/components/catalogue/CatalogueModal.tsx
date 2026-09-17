@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { X, Download, Share2, MessageCircle, BookOpen, Sparkles, Check, ArrowRight } from 'lucide-react';
 import { PRODUCTS_DATA } from '../../data/products';
 import { GIFT_COLLECTIONS } from '../../data/gifting';
@@ -12,6 +12,24 @@ interface CatalogueModalProps {
 
 export const CatalogueModal: React.FC<CatalogueModalProps> = ({ isOpen, onClose }) => {
   const [copied, setCopied] = useState(false);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        onClose();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = originalOverflow;
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isOpen, onClose]);
 
   if (!isOpen) return null;
 
@@ -34,9 +52,14 @@ export const CatalogueModal: React.FC<CatalogueModalProps> = ({ isOpen, onClose 
   };
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto bg-black/60 backdrop-blur-xs flex items-center justify-center p-4 sm:p-6 animate-in fade-in duration-200">
+    <div
+      onClick={onClose}
+      className="fixed inset-0 z-50 overflow-y-auto bg-black/60 backdrop-blur-xs flex items-center justify-center p-4 sm:p-6 animate-in fade-in duration-200 cursor-pointer"
+      role="dialog"
+      aria-modal="true"
+    >
       <div
-        className="relative bg-[#FAF7F2] w-full max-w-4xl rounded-3xl overflow-hidden shadow-2xl border border-[#E8DFD5] flex flex-col max-h-[90vh] animate-in zoom-in-95 duration-200 text-[#2A1810]"
+        className="relative bg-[#FAF7F2] w-full max-w-4xl rounded-3xl overflow-hidden shadow-2xl border border-[#E8DFD5] flex flex-col max-h-[90vh] animate-in zoom-in-95 duration-200 text-[#2A1810] cursor-default"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Top Header Bar */}

@@ -301,7 +301,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
           >
             <div className="relative aspect-4/3 overflow-hidden bg-[#F5EFEB]">
               <img
-                src="https://images.unsplash.com/photo-1607344645866-009c320c5ab8?auto=format&fit=crop&w=1200&q=80"
+                src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=1200&q=80"
                 alt="Custom Wedding & Corporate Gifting"
                 className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
               />
@@ -480,7 +480,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
             <div className="lg:col-span-5">
               <div className="aspect-4/3 rounded-2xl overflow-hidden border-2 border-[#5C3A21] shadow-2xl bg-[#3D2314]">
                 <img
-                  src="https://images.unsplash.com/photo-1607344645866-009c320c5ab8?auto=format&fit=crop&w=1200&q=80"
+                  src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=1200&q=80"
                   alt="Wedding Dry Fruit Gift Hampers"
                   className="w-full h-full object-cover"
                 />
@@ -724,7 +724,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
                 referrerPolicy="no-referrer-when-downgrade"
               />
               <div className="p-3 bg-[#FAF7F2] text-[11px] text-[#5C3A21] text-center border-t border-[#E8DFD5] font-medium">
-                📍 Located on Main Road, Ramgarh Cantonment, Jharkhand
+                📍 {BUSINESS_CONFIG.addressLine}, {BUSINESS_CONFIG.city}, {BUSINESS_CONFIG.state}
               </div>
             </div>
           </div>

@@ -89,10 +89,12 @@ export const ProductsView: React.FC<ProductsViewProps> = ({ onSelectProduct }) =
           ) : (
             <div className="text-center py-10 bg-white rounded-3xl border border-[#E8DFD5] p-8 space-y-3 shadow-sm">
               <p className="text-base font-serif font-bold text-[#2A1810]">
-                No dry fruits found matching "{searchQuery}"
+                {searchQuery
+                  ? `No dry fruits found matching "${searchQuery}"`
+                  : 'No dry fruits found in this category'}
               </p>
               <p className="text-xs text-[#5C3A21]">
-                Try clearing your search query or exploring our standard categories.
+                Try clearing your search query or selecting a different category.
               </p>
               <button
                 onClick={() => {

@@ -73,7 +73,7 @@ export const CatalogueView: React.FC = () => {
             </p>
             <div className="w-20 h-px bg-[#C5A059] mx-auto my-3" />
             <p className="text-xs sm:text-sm text-[#C9BEB2] font-light leading-relaxed">
-              Curated Harvest Editions • Bespoke Packaging Atelier • Main Road, Ramgarh Cantonment, Jharkhand
+              Curated Harvest Editions • Bespoke Packaging Atelier • {BUSINESS_CONFIG.addressLine}, {BUSINESS_CONFIG.city}, {BUSINESS_CONFIG.state}
             </p>
           </div>
         </div>

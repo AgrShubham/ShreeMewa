@@ -14,7 +14,10 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onSelect }) =
   return (
     <div className="group bg-white rounded-2xl border border-[#E8DFD5] overflow-hidden hover:shadow-2xl hover:border-[#C5A059] hover:scale-[1.025] hover:-translate-y-1.5 transition-all duration-300 ease-out will-change-transform flex flex-col h-full">
       {/* Product Image Container */}
-      <div className="relative aspect-4/3 overflow-hidden bg-[#F5EFEB]">
+      <div
+        onClick={() => onSelect(product)}
+        className="relative aspect-4/3 overflow-hidden bg-[#F5EFEB] cursor-pointer"
+      >
         <img
           src={product.image}
           alt={product.name}
@@ -25,7 +28,10 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onSelect }) =
         {/* Gradient Overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
           <button
-            onClick={() => onSelect(product)}
+            onClick={(e) => {
+              e.stopPropagation();
+              onSelect(product);
+            }}
             className="w-full py-2 px-3 bg-white/95 backdrop-blur-sm text-[#2A1810] text-xs font-semibold rounded-lg flex items-center justify-center gap-1.5 border border-[#E8DFD5] hover:border-[#C5A059] shadow-sm hover:bg-[#FAF7F2] transition-colors cursor-pointer"
           >
             <Eye className="w-3.5 h-3.5 text-[#C5A059]" />

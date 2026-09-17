@@ -67,7 +67,7 @@ export const PRODUCTS_DATA: Product[] = [
       'Pristine unblemished ivory appearance',
       'Staple centerpiece for luxury gift boxes'
     ],
-    image: 'https://images.unsplash.com/photo-1536591375315-1b836815776a?auto=format&fit=crop&w=1200&q=80',
+    image: 'https://images.unsplash.com/photo-1599599810769-bcde5a160d32?auto=format&fit=crop&w=1200&q=80',
     featured: true,
     bestseller: true,
     packagingType: 'Luxury Matte Box / Sealed Golden Tin'

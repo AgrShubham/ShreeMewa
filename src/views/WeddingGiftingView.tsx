@@ -142,7 +142,7 @@ export const WeddingGiftingView: React.FC = () => {
               <div className="grid grid-cols-2 gap-4 pt-2">
                 <div className="aspect-4/3 rounded-2xl overflow-hidden border border-[#E8DFD5] bg-[#FAF7F2]">
                   <img
-                    src="https://images.unsplash.com/photo-1607344645866-009c320c5ab8?auto=format&fit=crop&w=800&q=80"
+                    src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=800&q=80"
                     alt="Wedding Gifting Platter"
                     className="w-full h-full object-cover"
                   />
@@ -166,112 +166,147 @@ export const WeddingGiftingView: React.FC = () => {
 
             {/* Right: Wedding Enquiry Form (6 cols) */}
             <div className="lg:col-span-6 bg-[#FAF7F2] p-8 sm:p-10 rounded-3xl border border-[#E8DFD5] shadow-sm">
-              <h3 className="text-xl font-serif font-bold text-[#2A1810] mb-2">
-                Discuss Your Wedding Requirement
-              </h3>
-              <p className="text-xs text-[#5C3A21] font-light mb-6">
-                Fill in your preliminary details below to start a direct consultation via WhatsApp.
-              </p>
-
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div>
-                  <label className="block text-xs font-bold text-[#2A1810] mb-1">
-                    Your Name *
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    placeholder="e.g. Ramesh Agrawal"
-                    className="w-full px-4 py-2.5 bg-white border border-[#E8DFD5] rounded-xl text-xs text-[#2A1810] placeholder-[#8C6D53] focus:outline-none focus:border-[#C5A059]"
-                  />
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-xs font-bold text-[#2A1810] mb-1">
-                      Phone Number *
-                    </label>
-                    <input
-                      type="tel"
-                      required
-                      value={formData.phone}
-                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      placeholder="e.g. 9876543210"
-                      className="w-full px-4 py-2.5 bg-white border border-[#E8DFD5] rounded-xl text-xs text-[#2A1810] placeholder-[#8C6D53] focus:outline-none focus:border-[#C5A059]"
-                    />
+              {submitted ? (
+                <div className="text-center py-8 space-y-5 animate-in fade-in zoom-in-95 duration-200">
+                  <div className="w-14 h-14 rounded-full bg-[#25D366]/15 text-[#1E7E34] mx-auto flex items-center justify-center">
+                    <CheckCircle2 className="w-8 h-8" />
                   </div>
-
-                  <div>
-                    <label className="block text-xs font-bold text-[#2A1810] mb-1">
-                      Event Date
-                    </label>
-                    <input
-                      type="date"
-                      value={formData.eventDate}
-                      onChange={(e) => setFormData({ ...formData, eventDate: e.target.value })}
-                      className="w-full px-4 py-2.5 bg-white border border-[#E8DFD5] rounded-xl text-xs text-[#2A1810] focus:outline-none focus:border-[#C5A059]"
-                    />
+                  <div className="space-y-1.5">
+                    <h3 className="text-2xl font-serif font-bold text-[#2A1810]">
+                      Enquiry Formatted!
+                    </h3>
+                    <p className="text-xs text-[#5C3A21] max-w-sm mx-auto font-light leading-relaxed">
+                      Thank you, <span className="font-semibold text-[#2A1810]">{formData.name}</span>. Your wedding gifting enquiry is ready to send to our boutique concierge.
+                    </p>
                   </div>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-xs font-bold text-[#2A1810] mb-1">
-                      Approximate Quantity
-                    </label>
-                    <select
-                      value={formData.quantity}
-                      onChange={(e) => setFormData({ ...formData, quantity: e.target.value })}
-                      className="w-full px-4 py-2.5 bg-white border border-[#E8DFD5] rounded-xl text-xs text-[#2A1810] focus:outline-none focus:border-[#C5A059]"
+                  <div className="pt-2 flex flex-col gap-3 max-w-xs mx-auto">
+                    <a
+                      href={getWhatsAppLink(`*Wedding Gifting Enquiry - Shree Mewa*\n\n• *Name:* ${formData.name}\n• *Phone:* ${formData.phone}\n• *Event Date:* ${formData.eventDate || 'Not specified'}\n• *Estimated Quantity:* ${formData.quantity}\n• *Target Budget:* ${formData.budgetRange}\n• *Notes:* ${formData.message || 'None'}`)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full py-3.5 px-4 bg-[#25D366] hover:bg-[#20ba59] text-white font-bold text-xs rounded-xl flex items-center justify-center gap-2 shadow-md transition-all"
                     >
-                      <option value="15 - 50 boxes">15 - 50 boxes</option>
-                      <option value="50 - 100 boxes">50 - 100 boxes</option>
-                      <option value="100 - 250 boxes">100 - 250 boxes</option>
-                      <option value="250 - 500+ boxes">250 - 500+ boxes</option>
-                      <option value="Custom Quantity">Custom Quantity</option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <label className="block text-xs font-bold text-[#2A1810] mb-1">
-                      Budget Range
-                    </label>
-                    <select
-                      value={formData.budgetRange}
-                      onChange={(e) => setFormData({ ...formData, budgetRange: e.target.value })}
-                      className="w-full px-4 py-2.5 bg-white border border-[#E8DFD5] rounded-xl text-xs text-[#2A1810] focus:outline-none focus:border-[#C5A059]"
+                      <MessageCircle className="w-4 h-4 fill-white" />
+                      <span>Open WhatsApp Chat Directly</span>
+                    </a>
+                    <button
+                      onClick={() => setSubmitted(false)}
+                      className="text-xs text-[#9A7730] hover:text-[#2A1810] font-semibold transition-colors cursor-pointer py-1"
                     >
-                      <option value="₹750 - ₹1,200 per box">₹750 - ₹1,200 per box</option>
-                      <option value="₹1,200 - ₹2,500 per box">₹1,200 - ₹2,500 per box</option>
-                      <option value="₹2,500 - ₹5,000+ per box">₹2,500 - ₹5,000+ per box</option>
-                      <option value="Custom Luxury Budget">Custom Luxury Budget</option>
-                    </select>
+                      ← Edit Details or Send Another Enquiry
+                    </button>
                   </div>
                 </div>
+              ) : (
+                <>
+                  <h3 className="text-xl font-serif font-bold text-[#2A1810] mb-2">
+                    Discuss Your Wedding Requirement
+                  </h3>
+                  <p className="text-xs text-[#5C3A21] font-light mb-6">
+                    Fill in your preliminary details below to start a direct consultation via WhatsApp.
+                  </p>
 
-                <div>
-                  <label className="block text-xs font-bold text-[#2A1810] mb-1">
-                    Special Preferences / Wedding Theme
-                  </label>
-                  <textarea
-                    rows={3}
-                    value={formData.message}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    placeholder="Tell us about your invitation theme, dry fruit preferences (e.g. Mamra, Cashews, Dates), or box style..."
-                    className="w-full px-4 py-2.5 bg-white border border-[#E8DFD5] rounded-xl text-xs text-[#2A1810] placeholder-[#8C6D53] focus:outline-none focus:border-[#C5A059]"
-                  />
-                </div>
+                  <form onSubmit={handleSubmit} className="space-y-4">
+                    <div>
+                      <label className="block text-xs font-bold text-[#2A1810] mb-1">
+                        Your Name *
+                      </label>
+                      <input
+                        type="text"
+                        required
+                        value={formData.name}
+                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                        placeholder="e.g. Ramesh Agrawal"
+                        className="w-full px-4 py-2.5 bg-white border border-[#E8DFD5] rounded-xl text-xs text-[#2A1810] placeholder-[#8C6D53] focus:outline-none focus:border-[#C5A059]"
+                      />
+                    </div>
 
-                <button
-                  type="submit"
-                  className="w-full py-3.5 px-4 bg-[#C5A059] hover:bg-[#B38E46] text-[#2A1810] font-bold text-xs rounded-xl flex items-center justify-center gap-2 transition-all cursor-pointer shadow-md"
-                >
-                  <MessageCircle className="w-4 h-4 text-[#2A1810]" />
-                  <span>Send Enquiry via WhatsApp</span>
-                </button>
-              </form>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-xs font-bold text-[#2A1810] mb-1">
+                          Phone Number *
+                        </label>
+                        <input
+                          type="tel"
+                          required
+                          value={formData.phone}
+                          onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                          placeholder="e.g. 9876543210"
+                          className="w-full px-4 py-2.5 bg-white border border-[#E8DFD5] rounded-xl text-xs text-[#2A1810] placeholder-[#8C6D53] focus:outline-none focus:border-[#C5A059]"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-xs font-bold text-[#2A1810] mb-1">
+                          Event Date
+                        </label>
+                        <input
+                          type="date"
+                          value={formData.eventDate}
+                          onChange={(e) => setFormData({ ...formData, eventDate: e.target.value })}
+                          className="w-full px-4 py-2.5 bg-white border border-[#E8DFD5] rounded-xl text-xs text-[#2A1810] focus:outline-none focus:border-[#C5A059]"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-xs font-bold text-[#2A1810] mb-1">
+                          Approximate Quantity
+                        </label>
+                        <select
+                          value={formData.quantity}
+                          onChange={(e) => setFormData({ ...formData, quantity: e.target.value })}
+                          className="w-full px-4 py-2.5 bg-white border border-[#E8DFD5] rounded-xl text-xs text-[#2A1810] focus:outline-none focus:border-[#C5A059]"
+                        >
+                          <option value="15 - 50 boxes">15 - 50 boxes</option>
+                          <option value="50 - 100 boxes">50 - 100 boxes</option>
+                          <option value="100 - 250 boxes">100 - 250 boxes</option>
+                          <option value="250 - 500+ boxes">250 - 500+ boxes</option>
+                          <option value="Custom Quantity">Custom Quantity</option>
+                        </select>
+                      </div>
+
+                      <div>
+                        <label className="block text-xs font-bold text-[#2A1810] mb-1">
+                          Budget Range
+                        </label>
+                        <select
+                          value={formData.budgetRange}
+                          onChange={(e) => setFormData({ ...formData, budgetRange: e.target.value })}
+                          className="w-full px-4 py-2.5 bg-white border border-[#E8DFD5] rounded-xl text-xs text-[#2A1810] focus:outline-none focus:border-[#C5A059]"
+                        >
+                          <option value="₹750 - ₹1,200 per box">₹750 - ₹1,200 per box</option>
+                          <option value="₹1,200 - ₹2,500 per box">₹1,200 - ₹2,500 per box</option>
+                          <option value="₹2,500 - ₹5,000+ per box">₹2,500 - ₹5,000+ per box</option>
+                          <option value="Custom Luxury Budget">Custom Luxury Budget</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-bold text-[#2A1810] mb-1">
+                        Special Preferences / Wedding Theme
+                      </label>
+                      <textarea
+                        rows={3}
+                        value={formData.message}
+                        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                        placeholder="Tell us about your invitation theme, dry fruit preferences (e.g. Mamra, Cashews, Dates), or box style..."
+                        className="w-full px-4 py-2.5 bg-white border border-[#E8DFD5] rounded-xl text-xs text-[#2A1810] placeholder-[#8C6D53] focus:outline-none focus:border-[#C5A059]"
+                      />
+                    </div>
+
+                    <button
+                      type="submit"
+                      className="w-full py-3.5 px-4 bg-[#C5A059] hover:bg-[#B38E46] text-[#2A1810] font-bold text-xs rounded-xl flex items-center justify-center gap-2 transition-all cursor-pointer shadow-md"
+                    >
+                      <MessageCircle className="w-4 h-4 text-[#2A1810]" />
+                      <span>Send Enquiry via WhatsApp</span>
+                    </button>
+                  </form>
+                </>
+              )}
             </div>
           </div>
         </div>

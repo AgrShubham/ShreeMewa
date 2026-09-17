@@ -51,14 +51,33 @@ export const GiftingView: React.FC<GiftingViewProps> = ({ onSelectGift }) => {
         </div>
 
         {/* Gift Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-10">
-          {filteredGifts.map((gift) => (
-            <GiftCard
-              key={gift.id}
-              gift={gift}
-              onSelect={onSelectGift}
-            />
-          ))}
+        <div className="mt-10">
+          {filteredGifts.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {filteredGifts.map((gift) => (
+                <GiftCard
+                  key={gift.id}
+                  gift={gift}
+                  onSelect={onSelectGift}
+                />
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-10 bg-white rounded-3xl border border-[#E8DFD5] p-8 space-y-3 shadow-sm">
+              <p className="text-base font-serif font-bold text-[#2A1810]">
+                No gift hampers found in this collection
+              </p>
+              <p className="text-xs text-[#5C3A21]">
+                Try selecting a different occasion or reset filters to browse all hampers.
+              </p>
+              <button
+                onClick={() => setSelectedCategory('all')}
+                className="mt-2 px-4 py-2 bg-[#C5A059] hover:bg-[#B38E46] text-[#2A1810] text-xs font-bold rounded-full cursor-pointer shadow-xs"
+              >
+                View All Hampers
+              </button>
+            </div>
+          )}
         </div>
       </section>
 

@@ -146,7 +146,7 @@ export const StoreView: React.FC = () => {
               referrerPolicy="no-referrer-when-downgrade"
             />
             <div className="p-4 bg-[#FAF7F2] text-xs text-[#5C3A21] flex items-center justify-between border-t border-[#E8DFD5]">
-              <span>📍 Main Road, Ramgarh Cantonment, Jharkhand</span>
+              <span>📍 {BUSINESS_CONFIG.addressLine}, {BUSINESS_CONFIG.city}, {BUSINESS_CONFIG.state}</span>
               <a
                 href={BUSINESS_CONFIG.googleMapsDirectionsUrl}
                 target="_blank"

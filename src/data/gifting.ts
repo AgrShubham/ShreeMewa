@@ -69,7 +69,7 @@ export const GIFT_COLLECTIONS: GiftCollectionItem[] = [
       'Jumbo Medjool Dates (250g)'
     ],
     occasions: ['Wedding Invitations', 'Roka & Sagan Ceremony', 'Bridal Trousseau', 'Mehndi Favours'],
-    image: 'https://images.unsplash.com/photo-1607344645866-009c320c5ab8?auto=format&fit=crop&w=1200&q=80',
+    image: 'https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&w=1200&q=80',
     featured: true,
     minOrderQuantity: 5,
     customizationOptions: [
@@ -142,7 +142,7 @@ export const GIFT_COLLECTIONS: GiftCollectionItem[] = [
       'Selected Long Raisins (150g)'
     ],
     occasions: ['Rakhi Gifting', 'Puja Return Favours', 'Kitty Parties & Family Gatherings', 'Navratri'],
-    image: 'https://images.unsplash.com/photo-1607344645866-009c320c5ab8?auto=format&fit=crop&w=1200&q=80',
+    image: 'https://images.unsplash.com/photo-1512909006721-3d6018887383?auto=format&fit=crop&w=1200&q=80',
     featured: false,
     minOrderQuantity: 3,
     customizationOptions: [

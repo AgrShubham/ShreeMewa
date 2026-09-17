@@ -45,7 +45,9 @@ export default function App() {
         'contact',
         'catalogue',
       ];
-      if (validPages.includes(hash)) {
+      if (!hash || hash === 'home') {
+        setActivePage('home');
+      } else if (validPages.includes(hash)) {
         setActivePage(hash);
       }
     };

@@ -23,12 +23,14 @@ export const ContactView: React.FC = () => {
     enquiryType: 'Dry Fruits',
     message: '',
   });
+  const [submitted, setSubmitted] = useState(false);
   const [openFaq, setOpenFaq] = useState<string | null>(FAQS_DATA[0].id);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const formattedMsg = `*General Enquiry - Shree Mewa*\n\n• *Name:* ${formData.name}\n• *Phone:* ${formData.phone}\n• *Email:* ${formData.email || 'N/A'}\n• *Type:* ${formData.enquiryType}\n• *Message:* ${formData.message || 'I would like more information'}`;
     window.open(getWhatsAppLink(formattedMsg), '_blank');
+    setSubmitted(true);
   };
 
   return (
@@ -50,99 +52,134 @@ export const ContactView: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
           {/* Left: Contact Form (7 cols) */}
           <div className="lg:col-span-7 bg-white p-8 sm:p-12 rounded-3xl border border-[#E8DFD5] shadow-lg">
-            <h3 className="text-2xl font-serif font-bold text-[#2A1810] mb-2">
-              Send an Enquiry
-            </h3>
-            <p className="text-xs text-[#5C3A21] font-light mb-6">
-              Complete the form below to receive a swift response from our boutique concierge.
-            </p>
-
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-xs font-bold text-[#2A1810] mb-1">
-                    Your Full Name *
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    placeholder="e.g. Priyanshu Sharma"
-                    className="w-full px-4 py-2.5 bg-[#FAF7F2] border border-[#E8DFD5] rounded-xl text-xs text-[#2A1810] placeholder-[#8C6D53] focus:outline-none focus:border-[#C5A059]"
-                  />
+            {submitted ? (
+              <div className="text-center py-8 space-y-5 animate-in fade-in zoom-in-95 duration-200">
+                <div className="w-14 h-14 rounded-full bg-[#25D366]/15 text-[#1E7E34] mx-auto flex items-center justify-center">
+                  <CheckCircle2 className="w-8 h-8" />
                 </div>
-
-                <div>
-                  <label className="block text-xs font-bold text-[#2A1810] mb-1">
-                    Phone Number *
-                  </label>
-                  <input
-                    type="tel"
-                    required
-                    value={formData.phone}
-                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    placeholder="e.g. 9876543210"
-                    className="w-full px-4 py-2.5 bg-[#FAF7F2] border border-[#E8DFD5] rounded-xl text-xs text-[#2A1810] placeholder-[#8C6D53] focus:outline-none focus:border-[#C5A059]"
-                  />
+                <div className="space-y-1.5">
+                  <h3 className="text-2xl font-serif font-bold text-[#2A1810]">
+                    Enquiry Formatted!
+                  </h3>
+                  <p className="text-xs text-[#5C3A21] max-w-md mx-auto font-light leading-relaxed">
+                    Thank you, <span className="font-semibold text-[#2A1810]">{formData.name}</span>. Your {formData.enquiryType} enquiry has been formatted for WhatsApp dispatch.
+                  </p>
                 </div>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-xs font-bold text-[#2A1810] mb-1">
-                    Email Address
-                  </label>
-                  <input
-                    type="email"
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    placeholder="name@email.com"
-                    className="w-full px-4 py-2.5 bg-[#FAF7F2] border border-[#E8DFD5] rounded-xl text-xs text-[#2A1810] placeholder-[#8C6D53] focus:outline-none focus:border-[#C5A059]"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-xs font-bold text-[#2A1810] mb-1">
-                    Enquiry Type *
-                  </label>
-                  <select
-                    value={formData.enquiryType}
-                    onChange={(e) => setFormData({ ...formData, enquiryType: e.target.value })}
-                    className="w-full px-4 py-2.5 bg-[#FAF7F2] border border-[#E8DFD5] rounded-xl text-xs text-[#2A1810] focus:outline-none focus:border-[#C5A059]"
+                <div className="pt-2 flex flex-col gap-3 max-w-xs mx-auto">
+                  <a
+                    href={getWhatsAppLink(`*General Enquiry - Shree Mewa*\n\n• *Name:* ${formData.name}\n• *Phone:* ${formData.phone}\n• *Email:* ${formData.email || 'N/A'}\n• *Type:* ${formData.enquiryType}\n• *Message:* ${formData.message || 'I would like more information'}`)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full py-3.5 px-4 bg-[#25D366] hover:bg-[#20ba59] text-white font-bold text-xs rounded-xl flex items-center justify-center gap-2 shadow-md transition-all"
                   >
-                    <option value="Dry Fruits">Dry Fruits (Harvest / Pricing)</option>
-                    <option value="Premium Gift Box">Premium Festive Gift Box</option>
-                    <option value="Wedding Gifting">Wedding Gifting / Trousseau</option>
-                    <option value="Corporate Gifting">Corporate Bulk Gifting</option>
-                    <option value="Bulk Order">Bulk Order Requirement</option>
-                    <option value="General Enquiry">General Store Enquiry</option>
-                  </select>
+                    <MessageCircle className="w-4 h-4 fill-white" />
+                    <span>Open WhatsApp Chat Directly</span>
+                  </a>
+                  <button
+                    onClick={() => setSubmitted(false)}
+                    className="text-xs text-[#9A7730] hover:text-[#2A1810] font-semibold transition-colors cursor-pointer py-1"
+                  >
+                    ← Edit Details or Send Another Enquiry
+                  </button>
                 </div>
               </div>
+            ) : (
+              <>
+                <h3 className="text-2xl font-serif font-bold text-[#2A1810] mb-2">
+                  Send an Enquiry
+                </h3>
+                <p className="text-xs text-[#5C3A21] font-light mb-6">
+                  Complete the form below to receive a swift response from our boutique concierge.
+                </p>
 
-              <div>
-                <label className="block text-xs font-bold text-[#2A1810] mb-1">
-                  Your Message or Requirement *
-                </label>
-                <textarea
-                  rows={4}
-                  required
-                  value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  placeholder="Please describe what you are looking for (e.g. quantity, specific dry fruit grades, occasion date)..."
-                  className="w-full px-4 py-2.5 bg-[#FAF7F2] border border-[#E8DFD5] rounded-xl text-xs text-[#2A1810] placeholder-[#8C6D53] focus:outline-none focus:border-[#C5A059]"
-                />
-              </div>
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-xs font-bold text-[#2A1810] mb-1">
+                        Your Full Name *
+                      </label>
+                      <input
+                        type="text"
+                        required
+                        value={formData.name}
+                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                        placeholder="e.g. Priyanshu Sharma"
+                        className="w-full px-4 py-2.5 bg-[#FAF7F2] border border-[#E8DFD5] rounded-xl text-xs text-[#2A1810] placeholder-[#8C6D53] focus:outline-none focus:border-[#C5A059]"
+                      />
+                    </div>
 
-              <button
-                type="submit"
-                className="w-full py-3.5 px-4 bg-[#C5A059] hover:bg-[#B38E46] text-[#2A1810] font-bold text-xs rounded-xl flex items-center justify-center gap-2 transition-all cursor-pointer shadow-md"
-              >
-                <MessageCircle className="w-4 h-4 text-[#2A1810]" />
-                <span>Send Enquiry via WhatsApp</span>
-              </button>
-            </form>
+                    <div>
+                      <label className="block text-xs font-bold text-[#2A1810] mb-1">
+                        Phone Number *
+                      </label>
+                      <input
+                        type="tel"
+                        required
+                        value={formData.phone}
+                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                        placeholder="e.g. 9876543210"
+                        className="w-full px-4 py-2.5 bg-[#FAF7F2] border border-[#E8DFD5] rounded-xl text-xs text-[#2A1810] placeholder-[#8C6D53] focus:outline-none focus:border-[#C5A059]"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-xs font-bold text-[#2A1810] mb-1">
+                        Email Address
+                      </label>
+                      <input
+                        type="email"
+                        value={formData.email}
+                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        placeholder="name@email.com"
+                        className="w-full px-4 py-2.5 bg-[#FAF7F2] border border-[#E8DFD5] rounded-xl text-xs text-[#2A1810] placeholder-[#8C6D53] focus:outline-none focus:border-[#C5A059]"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-bold text-[#2A1810] mb-1">
+                        Enquiry Type *
+                      </label>
+                      <select
+                        value={formData.enquiryType}
+                        onChange={(e) => setFormData({ ...formData, enquiryType: e.target.value })}
+                        className="w-full px-4 py-2.5 bg-[#FAF7F2] border border-[#E8DFD5] rounded-xl text-xs text-[#2A1810] focus:outline-none focus:border-[#C5A059]"
+                      >
+                        <option value="Dry Fruits">Dry Fruits (Harvest / Pricing)</option>
+                        <option value="Premium Gift Box">Premium Festive Gift Box</option>
+                        <option value="Wedding Gifting">Wedding Gifting / Trousseau</option>
+                        <option value="Corporate Gifting">Corporate Bulk Gifting</option>
+                        <option value="Bulk Order">Bulk Order Requirement</option>
+                        <option value="General Enquiry">General Store Enquiry</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-bold text-[#2A1810] mb-1">
+                      Your Message *
+                    </label>
+                    <textarea
+                      rows={4}
+                      required
+                      value={formData.message}
+                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                      placeholder="Please describe what you are looking for (e.g. quantity, specific dry fruit grades, occasion date)..."
+                      className="w-full px-4 py-2.5 bg-[#FAF7F2] border border-[#E8DFD5] rounded-xl text-xs text-[#2A1810] placeholder-[#8C6D53] focus:outline-none focus:border-[#C5A059]"
+                    />
+                  </div>
+
+                  <button
+                    type="submit"
+                    className="w-full py-3.5 px-4 bg-[#C5A059] hover:bg-[#B38E46] text-[#2A1810] font-bold text-xs rounded-xl flex items-center justify-center gap-2 transition-all cursor-pointer shadow-md"
+                  >
+                    <MessageCircle className="w-4 h-4 text-[#2A1810]" />
+                    <span>Send Enquiry via WhatsApp</span>
+                  </button>
+                </form>
+              </>
+            )}
           </div>
 
           {/* Right: Quick Action Cards (5 cols) */}

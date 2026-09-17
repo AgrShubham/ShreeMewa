@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { X, CheckCircle2, MessageCircle, Sparkles, Gift, Layers, Calendar } from 'lucide-react';
 import { GiftCollectionItem } from '../../types';
 import { BUSINESS_CONFIG, getWhatsAppLink } from '../../data/business';
@@ -9,14 +9,37 @@ interface GiftDetailModalProps {
 }
 
 export const GiftDetailModal: React.FC<GiftDetailModalProps> = ({ gift, onClose }) => {
+  useEffect(() => {
+    if (!gift) return;
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        onClose();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = originalOverflow;
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [gift, onClose]);
+
   if (!gift) return null;
 
   const whatsappMsg = `Hello Shree Mewa, I would like to inquire about "${gift.name}" (${gift.categoryLabel}). Please share bulk pricing, lead time, and customization options for our upcoming celebration.`;
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto bg-black/60 backdrop-blur-xs flex items-center justify-center p-4 sm:p-6 animate-in fade-in duration-200">
+    <div
+      onClick={onClose}
+      className="fixed inset-0 z-50 overflow-y-auto bg-black/60 backdrop-blur-xs flex items-center justify-center p-4 sm:p-6 animate-in fade-in duration-200 cursor-pointer"
+      role="dialog"
+      aria-modal="true"
+    >
       <div
-        className="relative bg-white w-full max-w-3xl rounded-3xl overflow-hidden shadow-2xl border border-[#E8DFD5] animate-in zoom-in-95 duration-200 text-[#2A1810]"
+        className="relative bg-white w-full max-w-3xl rounded-3xl overflow-hidden shadow-2xl border border-[#E8DFD5] animate-in zoom-in-95 duration-200 text-[#2A1810] cursor-default"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button */}

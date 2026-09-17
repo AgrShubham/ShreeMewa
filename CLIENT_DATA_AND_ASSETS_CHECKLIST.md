@@ -42,12 +42,12 @@
 
 | Field | Current Placeholder | Client's Original Data Needed |
 | :--- | :--- | :--- |
-| **Calling Phone Number** | `+91 98765 43210` | Primary store desk / landline / mobile number |
+| **Calling Phone Number** | `+91 7004584139` | Primary store desk / landline / mobile number |
 | **Secondary Phone Number** | None | Alternate store manager phone (optional) |
-| **WhatsApp Business Number** | `919876543210` | **Crucial:** Verified WhatsApp number receiving all website customer leads |
-| **Official Customer Email** | `enquiry@shreemewa.com` | Official email (e.g., info@, sales@, or gmail) |
-| **Shop Address (Line 1)** | `Main Road, Ramgarh Cantonment` | Building name, Shop number, Road name |
-| **Prominent Landmark** | `Near Gandhi Chowk / Cantt Market` | Immediate visible landmark for visitors |
+| **WhatsApp Business Number** | `91 7004584139` | **Crucial:** Verified WhatsApp number receiving all website customer leads |
+| **Official Customer Email** | `shreemewaofficial@gmail.com` | Official email (e.g., info@, sales@, or gmail) |
+| **Shop Address (Line 1)** | `Shree Mewa, Shop no- B/15` | Building name, Shop number, Road name |
+| **Prominent Landmark** | `Bazar Samiti` | Immediate visible landmark for visitors |
 | **City, State, Pincode** | `Ramgarh Cantonment, Jharkhand — 829122` | Verified pin code & municipality |
 | **Google Maps Embed URL** | Generic Ramgarh coordinates | Real Google Maps `<iframe>` embed code for the exact store pin |
 | **Google Maps Directions Link** | `https://maps.google.com/?q=...` | Direct share link / Google Business Profile link |
