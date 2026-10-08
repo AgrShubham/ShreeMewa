@@ -26,7 +26,7 @@ export const AboutView: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
             <div className="md:col-span-5 aspect-4/3 rounded-3xl overflow-hidden border border-[#E8DFD5] bg-white shadow-md">
               <img
-                src="https://images.unsplash.com/photo-1508061253366-f7da158b6d46?auto=format&fit=crop&w=800&q=80"
+                src="/assets/products/mamra-almonds.jpg"
                 alt="Selected Almonds and Dry Fruits"
                 className="w-full h-full object-cover"
               />
@@ -65,7 +65,7 @@ export const AboutView: React.FC = () => {
             </div>
             <div className="md:col-span-5 aspect-4/3 rounded-3xl overflow-hidden border border-[#E8DFD5] bg-white order-1 md:order-2 shadow-md">
               <img
-                src="https://images.unsplash.com/photo-1596704017254-9b121068fb31?auto=format&fit=crop&w=800&q=80"
+                src="/assets/products/kashmiri-walnuts.jpg"
                 alt="Kashmiri Walnuts and Grade Screening"
                 className="w-full h-full object-cover"
               />
@@ -76,7 +76,7 @@ export const AboutView: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
             <div className="md:col-span-5 aspect-4/3 rounded-3xl overflow-hidden border border-[#E8DFD5] bg-white shadow-md">
               <img
-                src="https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&w=800&q=80"
+                src="/assets/gifting/royal-wooden-chest.jpg"
                 alt="Handcrafted Gifting Presentation"
                 className="w-full h-full object-cover"
               />

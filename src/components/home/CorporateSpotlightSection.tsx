@@ -14,8 +14,8 @@ export const CorporateSpotlightSection: React.FC<CorporateSpotlightSectionProps>
           <div className="lg:col-span-5 order-2 lg:order-1">
             <div className="aspect-4/3 rounded-2xl overflow-hidden border-2 border-[#E8DFD5] shadow-md bg-[#F5EFEB]">
               <img
-                src="https://images.unsplash.com/photo-1512909006721-3d6018887383?auto=format&fit=crop&w=1200&q=80"
-                alt="Corporate Gifting Solutions"
+                src="/assets/gifting/executive-sovereign-box.jpg"
+                alt="Executive Corporate Dry Fruit Gifting Solutions at Shree Mewa"
                 className="w-full h-full object-cover"
               />
             </div>

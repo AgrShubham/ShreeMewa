@@ -20,15 +20,15 @@ export const StoreShowcaseSection: React.FC = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="aspect-4/3 rounded-2xl overflow-hidden border border-[#E8DFD5] bg-white shadow-sm">
                 <img
-                  src="https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=800&q=80"
-                  alt="Shree Mewa Store Interior Display"
+                  src="/assets/gifting/royal-wooden-chest.jpg"
+                  alt="Shree Mewa Luxury Keepsake Hampers"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="aspect-4/3 rounded-2xl overflow-hidden border border-[#E8DFD5] bg-white shadow-sm">
                 <img
-                  src="https://images.unsplash.com/photo-1596704017254-9b121068fb31?auto=format&fit=crop&w=800&q=80"
-                  alt="Dry Fruits Harvest Showcase"
+                  src="/assets/products/royal-panchmewa.jpg"
+                  alt="Authentic Dry Fruits Harvest Selection"
                   className="w-full h-full object-cover"
                 />
               </div>

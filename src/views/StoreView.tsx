@@ -238,28 +238,28 @@ export const StoreView: React.FC = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-10">
           <div className="aspect-4/3 rounded-2xl overflow-hidden border border-[#E8DFD5] bg-white shadow-sm hover:shadow-xl hover:border-[#C5A059] hover:scale-[1.025] hover:-translate-y-1 transition-all duration-300 ease-out will-change-transform group">
             <img
-              src="https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=800&q=80"
+              src="/assets/gifting/heritage-brass-platter.jpg"
               alt="Artisan Brass Platters Counter"
               className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
             />
           </div>
           <div className="aspect-4/3 rounded-2xl overflow-hidden border border-[#E8DFD5] bg-white shadow-sm hover:shadow-xl hover:border-[#C5A059] hover:scale-[1.025] hover:-translate-y-1 transition-all duration-300 ease-out will-change-transform group">
             <img
-              src="https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&w=800&q=80"
+              src="/assets/gifting/royal-wooden-chest.jpg"
               alt="Wooden Keepsake Hamper Display"
               className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
             />
           </div>
           <div className="aspect-4/3 rounded-2xl overflow-hidden border border-[#E8DFD5] bg-white shadow-sm hover:shadow-xl hover:border-[#C5A059] hover:scale-[1.025] hover:-translate-y-1 transition-all duration-300 ease-out will-change-transform group">
             <img
-              src="https://images.unsplash.com/photo-1596704017254-9b121068fb31?auto=format&fit=crop&w=800&q=80"
+              src="/assets/products/mamra-almonds.jpg"
               alt="Fresh Harvest Nut Grading"
               className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
             />
           </div>
           <div className="aspect-4/3 rounded-2xl overflow-hidden border border-[#E8DFD5] bg-white shadow-sm hover:shadow-xl hover:border-[#C5A059] hover:scale-[1.025] hover:-translate-y-1 transition-all duration-300 ease-out will-change-transform group">
             <img
-              src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=800&q=80"
+              src="/assets/gifting/imperial-velvet-box.jpg"
               alt="Velvet Festive Boxes Shelf"
               className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
             />

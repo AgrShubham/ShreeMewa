@@ -102,7 +102,7 @@ export const GIFT_COLLECTIONS: GiftCollectionItem[] = [
       'Afghani Long Green Kishmish (200g)'
     ],
     occasions: ['Diwali', 'Karwa Chauth', 'Royal Hospitality', 'Griha Pravesh'],
-    image: 'https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=1200&q=80',
+    image: '/assets/gifting/heritage-brass-platter.jpg',
     featured: false,
     minOrderQuantity: 1,
     moqText: '1 unit retail',
@@ -128,7 +128,7 @@ export const GIFT_COLLECTIONS: GiftCollectionItem[] = [
       'Roasted Salted Pistachios (200g)'
     ],
     occasions: ['Corporate Annual Meets', 'Client Appreciation', 'Year-End Gifting', 'Employee Diwali'],
-    image: 'https://images.unsplash.com/photo-1577083552431-6e5fd01aa342?auto=format&fit=crop&w=1200&q=80',
+    image: '/assets/gifting/executive-sovereign-box.jpg',
     featured: true,
     minOrderQuantity: 15,
     moqText: 'Minimum Order: 15 units',
@@ -154,7 +154,7 @@ export const GIFT_COLLECTIONS: GiftCollectionItem[] = [
       'Afghani Long Green Kishmish (150g)'
     ],
     occasions: ['Return Gifts', 'Housewarming', 'Festive Puja', 'Mehendi Giveaways'],
-    image: 'https://images.unsplash.com/photo-1533038590840-1cde6e668a91?auto=format&fit=crop&w=1200&q=80',
+    image: '/assets/gifting/banarasi-potli-trio.jpg',
     featured: false,
     minOrderQuantity: 10,
     moqText: 'Minimum Order: 10 units',

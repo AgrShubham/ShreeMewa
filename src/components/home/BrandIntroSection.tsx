@@ -15,8 +15,8 @@ export const BrandIntroSection: React.FC<BrandIntroSectionProps> = ({ onNavigate
           <div className="lg:col-span-5 relative">
             <div className="aspect-4/3 rounded-2xl overflow-hidden shadow-lg border-2 border-white bg-white">
               <img
-                src="https://images.unsplash.com/photo-1599599810769-bcde5a160d32?auto=format&fit=crop&w=1200&q=80"
-                alt="Authentic Dry Fruit Selection at Shree Mewa"
+                src="/assets/gifting/royal-wooden-chest.jpg"
+                alt="Authentic Handcrafted Dry Fruit Keepsake Chest at Shree Mewa"
                 className="w-full h-full object-cover"
               />
             </div>

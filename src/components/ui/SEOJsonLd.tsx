@@ -9,11 +9,11 @@ export const SEOJsonLd: React.FC = () => {
     name: BUSINESS_CONFIG.tradeName,
     alternateName: BUSINESS_CONFIG.hindiName,
     legalName: BUSINESS_CONFIG.tradeName,
-    image: 'https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&w=1200&q=80',
+    image: 'https://shreemewa.com/assets/gifting/royal-wooden-chest.jpg',
     '@id': 'https://shreemewa.com',
     url: 'https://shreemewa.com',
     telephone: BUSINESS_CONFIG.phone,
-    hasMap: BUSINESS_CONFIG.googleReviewUrl,
+    hasMap: BUSINESS_CONFIG.googleMapsDirectionsUrl,
     priceRange: '₹340 - ₹5,500',
     taxID: BUSINESS_CONFIG.gstin,
     identifier: {

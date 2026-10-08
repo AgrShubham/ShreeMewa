@@ -25,7 +25,7 @@ export const CoreCategoriesSection: React.FC<CoreCategoriesSectionProps> = ({ on
         >
           <div className="relative aspect-4/3 overflow-hidden bg-[#F5EFEB]">
             <img
-              src="https://images.unsplash.com/photo-1508061253366-f7da158b6d46?auto=format&fit=crop&w=1200&q=80"
+              src="/assets/products/mamra-almonds.jpg"
               alt="Premium Dry Fruits Collection"
               className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
             />
@@ -58,7 +58,7 @@ export const CoreCategoriesSection: React.FC<CoreCategoriesSectionProps> = ({ on
         >
           <div className="relative aspect-4/3 overflow-hidden bg-[#F5EFEB]">
             <img
-              src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=1200&q=80"
+              src="/assets/gifting/imperial-velvet-box.jpg"
               alt="Premium Gifting Hampers"
               className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
             />
@@ -91,7 +91,7 @@ export const CoreCategoriesSection: React.FC<CoreCategoriesSectionProps> = ({ on
         >
           <div className="relative aspect-4/3 overflow-hidden bg-[#F5EFEB]">
             <img
-              src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=1200&q=80"
+              src="/assets/gifting/trousseau-hamper.jpg"
               alt="Custom Wedding & Corporate Gifting"
               className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
             />

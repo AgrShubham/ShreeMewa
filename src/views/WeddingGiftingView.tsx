@@ -142,15 +142,15 @@ export const WeddingGiftingView: React.FC = () => {
               <div className="grid grid-cols-2 gap-4 pt-2">
                 <div className="aspect-4/3 rounded-2xl overflow-hidden border border-[#E8DFD5] bg-[#FAF7F2]">
                   <img
-                    src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=800&q=80"
-                    alt="Wedding Gifting Platter"
+                    src="/assets/gifting/trousseau-hamper.jpg"
+                    alt="Shubh Vivah Wedding Gifting Trousseau Hamper"
                     className="w-full h-full object-cover"
                   />
                 </div>
                 <div className="aspect-4/3 rounded-2xl overflow-hidden border border-[#E8DFD5] bg-[#FAF7F2]">
                   <img
-                    src="https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&w=800&q=80"
-                    alt="Wooden Keepsake Box"
+                    src="/assets/gifting/royal-wooden-chest.jpg"
+                    alt="Royal Wooden Keepsake Wedding Box"
                     className="w-full h-full object-cover"
                   />
                 </div>
