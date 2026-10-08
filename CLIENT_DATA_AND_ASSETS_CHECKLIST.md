@@ -3,7 +3,7 @@
 >
 > **Target Business:** Shree Mewa  
 > **Location:** Bazar Samiti, Ramgarh Cantonment, Jharkhand, India  
-> **Status:** Phase 1 Verified Client Data Integrated & Live on `experiment/client-data-integration`
+> **Status:** Phase 1 Verified Client Data Integrated & Live on `main`
 
 ---
 

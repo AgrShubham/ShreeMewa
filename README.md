@@ -183,17 +183,12 @@ shree-mewa-boutique/
    cd ShreeMewa
    ```
 
-2. **Checkout the active integration branch:**
-   ```bash
-   git checkout experiment/client-data-integration
-   ```
-
-3. **Install dependencies:**
+2. **Install dependencies:**
    ```bash
    npm install
    ```
 
-4. **Launch the development server:**
+3. **Launch the development server:**
    ```bash
    npm run dev
    ```
