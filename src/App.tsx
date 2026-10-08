@@ -3,7 +3,7 @@
  * Physical Boutique: Ramgarh Cantonment, Jharkhand, India
  */
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense, lazy } from 'react';
 import { Navbar } from './components/layout/Navbar';
 import { Footer } from './components/layout/Footer';
 import { WhatsAppFloating } from './components/ui/WhatsAppFloating';
@@ -12,17 +12,41 @@ import { ProductDetailModal } from './components/products/ProductDetailModal';
 import { GiftDetailModal } from './components/gifting/GiftDetailModal';
 import { CatalogueModal } from './components/catalogue/CatalogueModal';
 import { CartDrawer } from './components/cart/CartDrawer';
+import { ViewLoadingFallback } from './components/ui/ViewLoadingFallback';
 import { CartProvider } from './context/CartContext';
 
+// Eager load HomeView for optimal initial Largest Contentful Paint (LCP)
 import { HomeView } from './views/HomeView';
-import { ProductsView } from './views/ProductsView';
-import { GiftingView } from './views/GiftingView';
-import { WeddingGiftingView } from './views/WeddingGiftingView';
-import { CorporateGiftingView } from './views/CorporateGiftingView';
-import { AboutView } from './views/AboutView';
-import { StoreView } from './views/StoreView';
-import { ContactView } from './views/ContactView';
-import { CatalogueView } from './views/CatalogueView';
+
+// Code-split secondary views on demand to optimize initial bundle size & performance
+const ProductsView = lazy(() =>
+  import('./views/ProductsView').then((m) => ({ default: m.ProductsView }))
+);
+const GiftingView = lazy(() =>
+  import('./views/GiftingView').then((m) => ({ default: m.GiftingView }))
+);
+const WeddingGiftingView = lazy(() =>
+  import('./views/WeddingGiftingView').then((m) => ({
+    default: m.WeddingGiftingView,
+  }))
+);
+const CorporateGiftingView = lazy(() =>
+  import('./views/CorporateGiftingView').then((m) => ({
+    default: m.CorporateGiftingView,
+  }))
+);
+const AboutView = lazy(() =>
+  import('./views/AboutView').then((m) => ({ default: m.AboutView }))
+);
+const StoreView = lazy(() =>
+  import('./views/StoreView').then((m) => ({ default: m.StoreView }))
+);
+const ContactView = lazy(() =>
+  import('./views/ContactView').then((m) => ({ default: m.ContactView }))
+);
+const CatalogueView = lazy(() =>
+  import('./views/CatalogueView').then((m) => ({ default: m.CatalogueView }))
+);
 
 import { ActivePage, Product, GiftCollectionItem } from './types';
 
@@ -94,27 +118,29 @@ export default function App() {
           onOpenCatalogue={() => setIsCatalogueModalOpen(true)}
         />
 
-        {/* Main Content View Switcher */}
+        {/* Main Content View Switcher with Lazy Suspense Boundaries */}
         <main className="flex-grow">
-          {activePage === 'home' && (
-            <HomeView
-              onNavigate={navigateTo}
-              onSelectProduct={setSelectedProduct}
-              onSelectGift={setSelectedGift}
-            />
-          )}
-          {activePage === 'products' && (
-            <ProductsView onSelectProduct={setSelectedProduct} />
-          )}
-          {activePage === 'gifting' && (
-            <GiftingView onSelectGift={setSelectedGift} />
-          )}
-          {activePage === 'wedding-gifting' && <WeddingGiftingView />}
-          {activePage === 'corporate-gifting' && <CorporateGiftingView />}
-          {activePage === 'about' && <AboutView />}
-          {activePage === 'store' && <StoreView />}
-          {activePage === 'contact' && <ContactView />}
-          {activePage === 'catalogue' && <CatalogueView />}
+          <Suspense fallback={<ViewLoadingFallback />}>
+            {activePage === 'home' && (
+              <HomeView
+                onNavigate={navigateTo}
+                onSelectProduct={setSelectedProduct}
+                onSelectGift={setSelectedGift}
+              />
+            )}
+            {activePage === 'products' && (
+              <ProductsView onSelectProduct={setSelectedProduct} />
+            )}
+            {activePage === 'gifting' && (
+              <GiftingView onSelectGift={setSelectedGift} />
+            )}
+            {activePage === 'wedding-gifting' && <WeddingGiftingView />}
+            {activePage === 'corporate-gifting' && <CorporateGiftingView />}
+            {activePage === 'about' && <AboutView />}
+            {activePage === 'store' && <StoreView />}
+            {activePage === 'contact' && <ContactView />}
+            {activePage === 'catalogue' && <CatalogueView />}
+          </Suspense>
         </main>
 
         {/* Global Footer with Ramgarh Store Presence & Links */}
