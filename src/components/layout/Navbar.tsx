@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, MessageCircle, Phone, MapPin, Sparkles, BookOpen, ShoppingBag } from 'lucide-react';
+import { Menu, X, MessageCircle, Phone, MapPin, BookOpen, ShoppingBag } from 'lucide-react';
 import { Logo } from '../brand/Logo';
 import { NAV_ITEMS } from '../../data/navigation';
 import { BUSINESS_CONFIG, getWhatsAppLink } from '../../data/business';
@@ -60,7 +60,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               Experience our curated harvests & handcrafted hampers in Ramgarh Cantonment, Jharkhand
             </span>
             <span className="sm:hidden font-light truncate text-[#E8DFD5]">
-              Retail Store in Ramgarh Cantonment, Jharkhand
+              Bazar Samiti, Ramgarh Cantonment
             </span>
           </div>
 
@@ -82,57 +82,53 @@ export const Navbar: React.FC<NavbarProps> = ({
       <nav
         className={`w-full transition-all duration-300 border-b ${
           scrolled
-            ? 'bg-[#FAF7F2]/95 backdrop-blur-md shadow-sm border-[#E8DFD5] py-2.5 sm:py-3'
-            : 'bg-[#FAF7F2] border-[#E8DFD5] py-3.5 sm:py-4'
+            ? 'bg-[#FAF7F2]/95 backdrop-blur-md shadow-sm border-[#E8DFD5] py-2 sm:py-2.5'
+            : 'bg-[#FAF7F2] border-[#E8DFD5] py-2.5 sm:py-3.5'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4">
           {/* Brand Logo */}
           <button
             onClick={() => handleNavClick('home')}
-            className="flex items-center text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C5A059] rounded-lg p-1 -m-1 cursor-pointer"
+            className="flex items-center text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C5A059] rounded-xl p-1 -m-1 cursor-pointer shrink-0"
             aria-label="Shree Mewa - Return to Homepage"
           >
             <Logo size={scrolled ? 'sm' : 'md'} />
           </button>
 
           {/* Desktop Navigation Links */}
-          <div className="hidden lg:flex items-center gap-4 xl:gap-8">
+          <div className="hidden lg:flex items-center gap-1 xl:gap-2">
             {NAV_ITEMS.map((item) => {
               const isActive = activePage === item.page;
               return (
                 <button
                   key={item.page}
                   onClick={() => handleNavClick(item.page)}
-                  className={`relative px-3 py-2 text-sm font-medium transition-colors rounded-md cursor-pointer ${
+                  className={`relative px-3.5 py-2 text-[13px] tracking-wide font-medium rounded-full transition-all duration-200 cursor-pointer ${
                     isActive
-                      ? 'text-[#2A1810] font-bold bg-[#EFE8DF]'
-                      : 'text-[#5C3A21] hover:text-[#2A1810] hover:bg-[#F3EDE4]'
+                      ? 'text-[#2A1810] font-bold bg-[#FAF7F2] shadow-2xs'
+                      : 'text-[#5C3A21] hover:text-[#2A1810] hover:bg-[#F3EDE4]/80'
                   }`}
                 >
                   <span>{item.label}</span>
-                  {item.badge && (
-                    <span className="ml-1.5 text-[10px] uppercase tracking-wider font-semibold px-1.5 py-0.5 rounded-full bg-[#C5A059]/20 text-[#9A7730] border border-[#C5A059]/40">
-                      {item.badge}
-                    </span>
-                  )}
                   {isActive && (
-                    <span className="absolute bottom-0 left-3 right-3 h-0.5 bg-[#C5A059] rounded-full" />
+                    <span className="absolute bottom-1 left-3.5 right-3.5 h-[2px] bg-[#C5A059] rounded-full" />
                   )}
                 </button>
               );
             })}
           </div>
 
-          {/* Action CTAs: Catalogue + Bag + WhatsApp */}
-          <div className="hidden sm:flex items-center gap-2.5">
+          {/* Action CTAs: Lookbook + Bag + WhatsApp */}
+          <div className="hidden sm:flex items-center gap-2 shrink-0">
+            {/* Lookbook Button */}
             <button
               onClick={() => {
                 if (onOpenCatalogue) onOpenCatalogue();
                 else handleNavClick('catalogue');
               }}
-              className="inline-flex items-center gap-1.5 px-3 py-2 text-xs font-medium text-[#2A1810] bg-white border border-[#E8DFD5] hover:border-[#C5A059] hover:bg-[#F7F2EB] rounded-full transition-all shadow-2xs cursor-pointer"
-              title="View Digital Gifting Catalogue"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-[#5C3A21] bg-white border border-[#E8DFD5] hover:border-[#C5A059] hover:text-[#2A1810] hover:bg-[#FAF7F2] rounded-full transition-all shadow-2xs cursor-pointer"
+              title="View Digital Gifting Lookbook"
             >
               <BookOpen className="w-3.5 h-3.5 text-[#C5A059]" />
               <span>Lookbook</span>
@@ -141,26 +137,27 @@ export const Navbar: React.FC<NavbarProps> = ({
             {/* Inquiry Bag Button */}
             <button
               onClick={openCart}
-              className="relative inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-bold text-[#2A1810] bg-white border border-[#E8DFD5] hover:border-[#C5A059] hover:bg-[#FAF7F2] rounded-full transition-all shadow-2xs cursor-pointer"
+              className="relative inline-flex items-center gap-2 px-3.5 py-1.5 text-xs font-bold text-[#2A1810] bg-white border border-[#E8DFD5] hover:border-[#C5A059] hover:bg-[#FAF7F2] rounded-full transition-all shadow-2xs cursor-pointer"
               title="Open Inquiry Bag"
             >
               <ShoppingBag className="w-3.5 h-3.5 text-[#C5A059]" />
               <span>Bag</span>
               {totalItemsCount > 0 && (
-                <span className="w-5 h-5 rounded-full bg-[#C5A059] text-[#2A1810] text-[10px] font-extrabold flex items-center justify-center -mr-1">
+                <span className="px-1.5 py-0.5 min-w-[18px] text-[10px] font-extrabold rounded-full bg-[#C5A059] text-[#2A1810] leading-none flex items-center justify-center">
                   {totalItemsCount}
                 </span>
               )}
             </button>
 
+            {/* WhatsApp Concierge Button */}
             <a
               href={getWhatsAppLink()}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 text-xs font-semibold text-white bg-[#25D366] hover:bg-[#20ba59] active:scale-98 rounded-full transition-all shadow-sm shadow-[#25D366]/20"
+              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-bold text-white bg-[#25D366] hover:bg-[#20ba59] active:scale-98 rounded-full transition-all shadow-2xs shadow-[#25D366]/20"
               aria-label="Enquire with Shree Mewa on WhatsApp"
             >
-              <MessageCircle className="w-4 h-4 fill-white" />
+              <MessageCircle className="w-3.5 h-3.5 fill-white text-white" />
               <span>WhatsApp</span>
             </a>
           </div>
@@ -187,12 +184,12 @@ export const Navbar: React.FC<NavbarProps> = ({
               className="sm:hidden inline-flex items-center justify-center p-2 rounded-full bg-[#25D366] text-white shadow-2xs"
               aria-label="WhatsApp quick chat"
             >
-              <MessageCircle className="w-4 h-4 fill-white" />
+              <MessageCircle className="w-4 h-4 fill-white text-white" />
             </a>
 
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="inline-flex items-center justify-center p-2.5 rounded-lg text-[#2A1810] hover:bg-[#EFE8DF] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C5A059] transition-colors cursor-pointer"
+              className="inline-flex items-center justify-center p-2 rounded-lg text-[#2A1810] hover:bg-[#EFE8DF] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C5A059] transition-colors cursor-pointer"
               aria-expanded={mobileMenuOpen}
               aria-label={mobileMenuOpen ? 'Close Navigation Menu' : 'Open Navigation Menu'}
             >
@@ -204,7 +201,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
       {/* Mobile Drawer Menu (Collapsible) */}
       {mobileMenuOpen && (
-        <div className="lg:hidden fixed inset-x-0 top-[var(--nav-height,108px)] bottom-0 z-50 bg-[#FAF7F2] overflow-y-auto border-t border-[#E8DFD5] animate-in fade-in slide-in-from-top-4 duration-200">
+        <div className="lg:hidden fixed inset-x-0 top-[var(--nav-height,104px)] bottom-0 z-50 bg-[#FAF7F2] overflow-y-auto border-t border-[#E8DFD5] animate-in fade-in slide-in-from-top-4 duration-200">
           <div className="p-6 space-y-6 max-w-md mx-auto">
             {/* Store Location Pill */}
             <div className="flex items-center gap-2.5 p-3 rounded-xl bg-white border border-[#E8DFD5] shadow-xs">
@@ -217,13 +214,25 @@ export const Navbar: React.FC<NavbarProps> = ({
 
             {/* Navigation Links */}
             <div className="flex flex-col space-y-1">
+              {/* Explicit Home Link for Mobile */}
+              <button
+                onClick={() => handleNavClick('home')}
+                className={`flex items-center justify-between w-full px-4 py-3 rounded-xl text-base font-medium transition-colors text-left cursor-pointer ${
+                  activePage === 'home'
+                    ? 'bg-white text-[#2A1810] font-bold border border-[#C5A059] shadow-xs'
+                    : 'text-[#5C3A21] hover:bg-[#F3EDE4]'
+                }`}
+              >
+                <span>Home (होम)</span>
+              </button>
+
               {NAV_ITEMS.map((item) => {
                 const isActive = activePage === item.page;
                 return (
                   <button
                     key={item.page}
                     onClick={() => handleNavClick(item.page)}
-                    className={`flex items-center justify-between w-full px-4 py-3.5 rounded-xl text-base font-medium transition-colors text-left cursor-pointer ${
+                    className={`flex items-center justify-between w-full px-4 py-3 rounded-xl text-base font-medium transition-colors text-left cursor-pointer ${
                       isActive
                         ? 'bg-white text-[#2A1810] font-bold border border-[#C5A059] shadow-xs'
                         : 'text-[#5C3A21] hover:bg-[#F3EDE4]'
@@ -237,17 +246,6 @@ export const Navbar: React.FC<NavbarProps> = ({
                         </span>
                       )}
                     </div>
-                    {item.badge && (
-                      <span
-                        className={`text-[10px] uppercase tracking-wider font-semibold px-2 py-0.5 rounded-full ${
-                          isActive
-                            ? 'bg-[#C5A059] text-[#2A1810]'
-                            : 'bg-[#EFE8DF] text-[#5C3A21]'
-                        }`}
-                      >
-                        {item.badge}
-                      </span>
-                    )}
                   </button>
                 );
               })}
@@ -258,7 +256,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   else handleNavClick('catalogue');
                   setMobileMenuOpen(false);
                 }}
-                className={`flex items-center justify-between w-full px-4 py-3.5 rounded-xl text-base font-medium transition-colors text-left cursor-pointer ${
+                className={`flex items-center justify-between w-full px-4 py-3 rounded-xl text-base font-medium transition-colors text-left cursor-pointer ${
                   activePage === 'catalogue'
                     ? 'bg-white text-[#2A1810] font-bold border border-[#C5A059]'
                     : 'text-[#5C3A21] hover:bg-[#F3EDE4]'
@@ -280,7 +278,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2.5 w-full py-3.5 px-4 rounded-xl text-sm font-semibold text-white bg-[#25D366] hover:bg-[#20ba59] transition-colors shadow-sm"
               >
-                <MessageCircle className="w-5 h-5 fill-white" />
+                <MessageCircle className="w-5 h-5 fill-white text-white" />
                 <span>Enquire on WhatsApp</span>
               </a>
 

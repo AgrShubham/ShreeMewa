@@ -15,21 +15,21 @@ export const Logo: React.FC<LogoProps> = ({
 }) => {
   const isWhite = variant === 'white';
 
-  // Size configurations for the logo image (1.5x scaled)
+  // Size configurations tuned for elegance without layout blowout
   const sizeMap = {
-    sm: { imgH: 54, subScale: 'text-[9px]' },
-    md: { imgH: 75, subScale: 'text-[11px]' },
-    lg: { imgH: 108, subScale: 'text-xs' },
-    xl: { imgH: 144, subScale: 'text-sm' },
+    sm: { imgH: 36, titleSize: 'text-base sm:text-lg', subScale: 'text-[9px]' },
+    md: { imgH: 42, titleSize: 'text-lg sm:text-xl', subScale: 'text-[10px]' },
+    lg: { imgH: 56, titleSize: 'text-2xl', subScale: 'text-xs' },
+    xl: { imgH: 72, titleSize: 'text-3xl', subScale: 'text-sm' },
   };
 
   const currentSize = sizeMap[size];
 
   // Circular Seal Variant
   if (variant === 'seal') {
-    const sealDim = size === 'sm' ? 60 : size === 'md' ? 84 : size === 'lg' ? 120 : 150;
+    const sealDim = size === 'sm' ? 48 : size === 'md' ? 68 : size === 'lg' ? 96 : 120;
     return (
-      <div className={`relative inline-flex items-center justify-center ${className}`}>
+      <div className={`relative inline-flex items-center justify-center shrink-0 ${className}`}>
         <img
           src="/assets/shree-mewa.svg"
           alt="Shree Mewa Seal"
@@ -47,11 +47,11 @@ export const Logo: React.FC<LogoProps> = ({
   // Mark Only — just the logo image without subtitle
   if (variant === 'mark') {
     return (
-      <div className={`inline-flex items-center justify-center ${className}`}>
+      <div className={`inline-flex items-center justify-center shrink-0 ${className}`}>
         <img
           src="/assets/shree-mewa.svg"
           alt="Shree Mewa"
-          style={{ height: currentSize.imgH }}
+          style={{ height: currentSize.imgH, width: currentSize.imgH }}
           className="object-contain select-none"
         />
       </div>
@@ -60,39 +60,58 @@ export const Logo: React.FC<LogoProps> = ({
 
   // Full / Horizontal / White Layout
   return (
-    <div className={`group inline-flex items-center gap-2.5 sm:gap-3 transition-opacity ${className}`}>
+    <div className={`group inline-flex items-center gap-2.5 sm:gap-3 transition-opacity shrink-0 ${className}`}>
       {/* Brand Logo SVG */}
       <img
         src="/assets/shree-mewa.svg"
-        alt="Shree Mewa — Premium Dry Fruits & Gifting"
+        alt="Shree Mewa"
         style={{
           height: currentSize.imgH,
+          width: currentSize.imgH,
           filter: isWhite ? 'brightness(0) invert(1)' : 'none',
         }}
-        className="object-contain select-none transition-transform duration-300 group-hover:scale-105"
+        className="object-contain select-none transition-transform duration-300 group-hover:scale-105 shrink-0"
       />
 
-      {/* Subtitle (Dry Fruits & Gifting • Ramgarh) */}
-      {showSubtitle && (
-        <div className="flex flex-col leading-none justify-center">
-          <div className="flex items-center gap-1.5">
+      {/* Brand Name & Subtitle */}
+      <div className="flex flex-col justify-center leading-none text-left select-none">
+        <div className="flex items-baseline gap-1.5">
+          <span
+            className={`font-serif font-bold tracking-tight ${
+              isWhite ? 'text-[#FAF7F2]' : 'text-[#2A1810]'
+            } ${currentSize.titleSize}`}
+          >
+            Shree Mewa
+          </span>
+          <span
+            className={`font-devanagari text-[10px] font-medium opacity-80 ${
+              isWhite ? 'text-[#DFCA9B]' : 'text-[#9A7730]'
+            }`}
+          >
+            श्री मेवा
+          </span>
+        </div>
+
+        {showSubtitle && (
+          <div className="flex items-center gap-1.5 mt-1 whitespace-nowrap">
             <span
-              className={`font-sans uppercase tracking-[0.22em] font-medium transition-colors ${currentSize.subScale}`}
-              style={{ color: isWhite ? 'rgba(255,255,255,0.75)' : '#7A5840' }}
+              className={`font-sans uppercase tracking-[0.2em] font-semibold ${
+                currentSize.subScale
+              } ${isWhite ? 'text-[#E8DFD5]/80' : 'text-[#8C6D53]'}`}
             >
               Dry Fruits & Gifting
             </span>
-            <span className="inline-block w-1 h-1 rounded-full bg-[#C5A059]"></span>
+            <span className="inline-block w-1 h-1 rounded-full bg-[#C5A059] opacity-75" />
             <span
-              className={`font-sans tracking-wider uppercase font-semibold text-[8px] sm:text-[9px] ${
+              className={`font-sans tracking-wider uppercase font-bold text-[8.5px] ${
                 isWhite ? 'text-[#DFCA9B]' : 'text-[#9A7730]'
               }`}
             >
               Ramgarh
             </span>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };
