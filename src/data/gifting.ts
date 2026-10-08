@@ -17,7 +17,7 @@ export const GIFT_COLLECTIONS: GiftCollectionItem[] = [
       'Kashmiri Walnut Giri (200g)'
     ],
     occasions: ['Weddings', 'VIP Corporate', 'Griha Pravesh', 'Diwali'],
-    image: 'https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&w=1200&q=80',
+    image: '/assets/gifting/royal-wooden-chest.jpg',
     featured: true,
     minOrderQuantity: 1,
     moqText: '1 unit retail / 10 units for custom name engraving',
@@ -45,7 +45,7 @@ export const GIFT_COLLECTIONS: GiftCollectionItem[] = [
       'Turkish Garland Anjeer (200g)'
     ],
     occasions: ['Diwali Gifts', 'Corporate Executives', 'Milestone Celebrations', 'Raksha Bandhan'],
-    image: 'https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=1200&q=80',
+    image: '/assets/gifting/imperial-velvet-box.jpg',
     featured: true,
     minOrderQuantity: 1,
     moqText: '1 unit retail / 20 units corporate',
@@ -75,7 +75,7 @@ export const GIFT_COLLECTIONS: GiftCollectionItem[] = [
       'Pure Kashmiri Saffron (1g blister pack)'
     ],
     occasions: ['Wedding Shagun', 'Ring Ceremony', 'Roka', 'Sagan & Tilak'],
-    image: 'https://images.unsplash.com/photo-1512909006721-3d6018887383?auto=format&fit=crop&w=1200&q=80',
+    image: '/assets/gifting/trousseau-hamper.jpg',
     featured: true,
     minOrderQuantity: 5,
     moqText: 'Minimum Order: 5 units',

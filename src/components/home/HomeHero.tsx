@@ -91,7 +91,7 @@ export const HomeHero: React.FC<HomeHeroProps> = ({ onNavigate }) => {
               {/* Main Hero Visual Card */}
               <div className="relative aspect-4/5 rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-[#F5EFEB]">
                 <img
-                  src="https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&w=1200&q=80"
+                  src="/assets/gifting/royal-wooden-chest.jpg"
                   alt="Shree Mewa Handcrafted Dry Fruit Gift Box"
                   className="w-full h-full object-cover"
                 />

@@ -83,7 +83,7 @@ export const WeddingSpotlightSection: React.FC<WeddingSpotlightSectionProps> = (
           <div className="lg:col-span-5">
             <div className="aspect-4/3 rounded-2xl overflow-hidden border-2 border-[#5C3A21] shadow-2xl bg-[#3D2314]">
               <img
-                src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=1200&q=80"
+                src="/assets/gifting/trousseau-hamper.jpg"
                 alt="Wedding Dry Fruit Gift Hampers"
                 className="w-full h-full object-cover"
               />

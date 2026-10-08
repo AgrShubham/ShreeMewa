@@ -15,7 +15,7 @@
 | **2. Contact, Location & Desks** | ✅ **Verified** | Dual phone numbers (+91 7004584139 & +91 72098 13793), Bazar Samiti address, Google Review link |
 | **3. Compliance & Tax (FSSAI/GST)** | ✅ **Verified** | FSSAI Lic `11122233344455`, GSTIN `20AAAAA0000A1Z5`, 100% Veg green dot |
 | **4. Digital Branding Assets** | ✅ **Active** | Vector SVGs, transparent seals, OpenGraph tags |
-| **5. Photography Assets** | 🔄 **In Progress** | High-res themed Unsplash photography active; awaiting client's in-store DSLR shots |
+| **5. Photography Assets** | ✅ **Active** | 10 bespoke studio product photos + 3 keepsake hamper photos generated and stored in `assets/products/` & `assets/gifting/` |
 | **6. Product Inventory (10 Items)** | ✅ **Verified** | 10 single-harvest items with real INR pricing & pack weights (250g, 500g, 1kg) |
 | **7. Gifting Collections (6 Hampers)**| ✅ **Verified** | 6 luxury hampers with verified price ranges & contents |
 | **8. Store Operations & Delivery** | ✅ **Verified** | Ramgarh local delivery, store pickup, courier dispatch, UPI/Cash/NEFT |
@@ -73,13 +73,21 @@
 ---
 
 ## 5. Physical Photography Assets
-*Awaiting final in-store photography from client to replace curated royalty-free visual placeholders:*
+*Generated & Stored in `assets/products/` and `assets/gifting/` (served via `public/assets/`):*
 
-- [ ] **Storefront Exterior:** High-resolution day shot showing the physical board at Bazar Samiti.
-- [ ] **Interior Showroom:** Wide-angle view showing curated shelves, brass containers, and lighting.
-- [ ] **Dry Fruit Display Counters:** Macro shots of dry fruits displayed in boutique canisters.
-- [ ] **Client Packaged Pouches:** Photos of actual Shree Mewa branded printed pouches or golden tins.
-- [ ] **Custom Wedding Boxes:** Photos of client's past bespoke wedding invitation orders.
+- [x] **Mamra Almonds:** `assets/products/mamra-almonds.jpg` (Concave oil-rich kernels in gold-rim ceramic bowl)
+- [x] **California Almonds:** `assets/products/california-almonds.jpg` (Golden jumbo kernels in hand-hammered brass bowl)
+- [x] **Cashews W-180:** `assets/products/cashews-w180.jpg` (Ivory-white king jumbo cashews in dark stoneware)
+- [x] **Roasted Cashews:** `assets/products/roasted-cashews.jpg` (Slow-toasted cashews with Himalayan pink salt crystals)
+- [x] **Afghani Pistachios:** `assets/products/afghani-pistachios.jpg` (Open-shell emerald pistachios in antique copper bowl)
+- [x] **Kashmiri Walnuts:** `assets/products/kashmiri-walnuts.jpg` (Snow-white extra-light butterfly walnut halves)
+- [x] **Medjool Dates:** `assets/products/medjool-dates.jpg` (Glossy caramel Medjool dates on Moroccan brass platter)
+- [x] **Afghani Raisins:** `assets/products/afghani-raisins.jpg` (Slender translucent long green kishmish)
+- [x] **Turkish Anjeer:** `assets/products/turkish-anjeer.jpg` (Jumbo sun-dried garland figs on natural jute twine)
+- [x] **Sacred Panchmewa:** `assets/products/royal-panchmewa.jpg` (Auspicious 5-mewa ceremonial thali blend)
+- [x] **The Royal Wooden Chest:** `assets/gifting/royal-wooden-chest.jpg` (Teakwood box with brass clasp and wax seal)
+- [x] **The Imperial Velvet Box:** `assets/gifting/imperial-velvet-box.jpg` (Emerald velvet box with gold mandala foiling)
+- [x] **The Shubh Vivah Trousseau:** `assets/gifting/trousseau-hamper.jpg` (Ornate Indian wedding shagun tray)
 
 ---
 

@@ -21,7 +21,7 @@ export const PRODUCTS_DATA: Product[] = [
       'Hand-screened for uniform shape & crunch'
     ],
     keyFeatures: '100% single-harvest Iranian Mamra, >50% natural almond oil, Zero chemical polish',
-    image: 'https://images.unsplash.com/photo-1508061253366-f7da158b6d46?auto=format&fit=crop&w=1200&q=80',
+    image: '/assets/products/mamra-almonds.jpg',
     featured: true,
     bestseller: true,
     pricingPolicy: '₹1,650 per 500g',
@@ -48,7 +48,7 @@ export const PRODUCTS_DATA: Product[] = [
       'Hygienically sorted and nitrogen sealed'
     ],
     keyFeatures: 'Uniform jumbo kernel size, Crisp sweet bite, Rich in Vitamin E',
-    image: 'https://images.unsplash.com/photo-1563227812-0ea4c22e6cc8?auto=format&fit=crop&w=1200&q=80',
+    image: '/assets/products/california-almonds.jpg',
     featured: true,
     pricingPolicy: '₹520 per 500g',
     pricePer500g: 520,
@@ -74,7 +74,7 @@ export const PRODUCTS_DATA: Product[] = [
       'Centerpiece grade for luxury wedding platters'
     ],
     keyFeatures: 'Rare mammoth kernel count (160–180/lb), Pure unblemished white, Creamy sweet taste',
-    image: 'https://images.unsplash.com/photo-1599599810769-bcde5a160d32?auto=format&fit=crop&w=1200&q=80',
+    image: '/assets/products/cashews-w180.jpg',
     featured: true,
     bestseller: true,
     pricingPolicy: '₹780 per 500g',
@@ -101,7 +101,7 @@ export const PRODUCTS_DATA: Product[] = [
       'Packed in airtight canisters to preserve crispness'
     ],
     keyFeatures: 'Slow roasted without palm oil, Himalayan pink salt seasoning, Golden crunch',
-    image: 'https://images.unsplash.com/photo-1509358271058-acd22cc93898?auto=format&fit=crop&w=1200&q=80',
+    image: '/assets/products/roasted-cashews.jpg',
     featured: false,
     pricingPolicy: '₹480 per 500g',
     pricePer500g: 480,
@@ -127,7 +127,7 @@ export const PRODUCTS_DATA: Product[] = [
       'Packed with natural antioxidants and plant protein'
     ],
     keyFeatures: 'Tree-ripened open shells, Vibrant emerald green kernels, Lightly sea-salted',
-    image: 'https://images.unsplash.com/photo-1528751014936-863e6e7a319c?auto=format&fit=crop&w=1200&q=80',
+    image: '/assets/products/afghani-pistachios.jpg',
     featured: true,
     bestseller: true,
     pricingPolicy: '₹690 per 500g',
@@ -154,7 +154,7 @@ export const PRODUCTS_DATA: Product[] = [
       'Dense in essential Omega-3 (ALA) and brain nutrients'
     ],
     keyFeatures: 'Hand-cracked in Kupwara/Anantnag, Zero bitter aftertaste, Rich in Omega-3',
-    image: 'https://images.unsplash.com/photo-1596704017254-9b121068fb31?auto=format&fit=crop&w=1200&q=80',
+    image: '/assets/products/kashmiri-walnuts.jpg',
     featured: true,
     bestseller: true,
     pricingPolicy: '₹750 per 500g',
@@ -181,7 +181,7 @@ export const PRODUCTS_DATA: Product[] = [
       'Regal centerpiece for festive hampers and Ramadan'
     ],
     keyFeatures: 'Caramel-like chew, Large luscious fruit, 100% natural unglazed',
-    image: 'https://images.unsplash.com/photo-1549492423-400259a2e574?auto=format&fit=crop&w=1200&q=80',
+    image: '/assets/products/medjool-dates.jpg',
     featured: true,
     pricingPolicy: '₹650 per 500g',
     pricePer500g: 650,
@@ -207,7 +207,7 @@ export const PRODUCTS_DATA: Product[] = [
       'Rich in iron, potassium, and natural energy'
     ],
     keyFeatures: 'Slender elongated shape, Naturally shade-dried (Kishmish Khana), Delicate sweetness',
-    image: 'https://images.unsplash.com/photo-1582845512747-e42001c95638?auto=format&fit=crop&w=1200&q=80',
+    image: '/assets/products/afghani-raisins.jpg',
     featured: false,
     pricingPolicy: '₹340 per 500g',
     pricePer500g: 340,
@@ -233,7 +233,7 @@ export const PRODUCTS_DATA: Product[] = [
       'Abundant in natural dietary calcium and iron'
     ],
     keyFeatures: 'Plump flesh with seed crunch, Golden honey tones, High dietary calcium & iron',
-    image: 'https://images.unsplash.com/photo-1595475207225-428b62bda831?auto=format&fit=crop&w=1200&q=80',
+    image: '/assets/products/turkish-anjeer.jpg',
     featured: true,
     pricingPolicy: '₹790 per 500g',
     pricePer500g: 790,
@@ -259,7 +259,7 @@ export const PRODUCTS_DATA: Product[] = [
       'Sealed in airtight golden canisters to preserve freshness'
     ],
     keyFeatures: 'Almonds, Cashews, Kishmish, Dry Dates & Makhana, Ideal for Puja & Festivities',
-    image: 'https://images.unsplash.com/photo-1608797178974-15b35a61dede?auto=format&fit=crop&w=1200&q=80',
+    image: '/assets/products/royal-panchmewa.jpg',
     featured: true,
     bestseller: true,
     pricingPolicy: '₹450 per 500g',
