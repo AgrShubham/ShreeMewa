@@ -1,5 +1,5 @@
 import React from 'react';
-import { MessageCircle, Sparkles, ChevronRight, Eye } from 'lucide-react';
+import { MessageCircle, Sparkles, ChevronRight, Eye, MapPin } from 'lucide-react';
 import { Product } from '../../types';
 import { getWhatsAppLink } from '../../data/business';
 
@@ -9,7 +9,7 @@ interface ProductCardProps {
 }
 
 export const ProductCard: React.FC<ProductCardProps> = ({ product, onSelect }) => {
-  const whatsappMsg = `Hello Shree Mewa, I am interested in "${product.name}" (${product.hindiName || ''}). Could you please share the current availability, weights, and pricing?`;
+  const whatsappMsg = `Hello Shree Mewa, I am interested in "${product.name}" (${product.hindiName || ''}) priced at ${product.pricingPolicy || 'standard rates'}. Could you please confirm current stock and pack sizes available at your Ramgarh store?`;
 
   return (
     <div className="group bg-white rounded-2xl border border-[#E8DFD5] overflow-hidden hover:shadow-2xl hover:border-[#C5A059] hover:scale-[1.025] hover:-translate-y-1.5 transition-all duration-300 ease-out will-change-transform flex flex-col h-full">
@@ -39,7 +39,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onSelect }) =
           </button>
         </div>
 
-        {/* Badges */}
+        {/* Badges Top Left */}
         <div className="absolute top-3 left-3 flex flex-col gap-1">
           {product.bestseller && (
             <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-[#C5A059] text-[#2A1810] shadow-xs">
@@ -53,47 +53,74 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onSelect }) =
             </span>
           )}
         </div>
+
+        {/* Top Right: Green Veg Dot */}
+        <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-xs p-1 rounded-md border border-[#E8DFD5] shadow-xs flex items-center justify-center" title="100% Certified Vegetarian">
+          <div className="w-3.5 h-3.5 border-2 border-emerald-600 flex items-center justify-center rounded-xs">
+            <div className="w-1.5 h-1.5 bg-emerald-600 rounded-full" />
+          </div>
+        </div>
       </div>
 
       {/* Card Content */}
       <div className="p-5 flex flex-col flex-grow justify-between space-y-4 bg-white">
         <div>
-          {/* Category & Hindi Name */}
+          {/* Category & Origin */}
           <div className="flex items-center justify-between text-xs text-[#7A5840] mb-1">
             <span className="uppercase tracking-wider font-semibold text-[10px] text-[#9A7730]">
               {product.categoryLabel}
             </span>
-            {product.hindiName && (
-              <span className="font-devanagari font-medium text-[#5C3A21]">
-                {product.hindiName}
+            {product.origin && (
+              <span className="inline-flex items-center gap-1 text-[10px] text-[#8C6D53]">
+                <MapPin className="w-3 h-3 text-[#C5A059]" />
+                <span>{product.origin}</span>
               </span>
             )}
           </div>
 
-          {/* Title */}
-          <h3
-            onClick={() => onSelect(product)}
-            className="text-lg font-serif font-bold text-[#2A1810] group-hover:text-[#9A7730] transition-colors cursor-pointer"
-          >
-            {product.name}
-          </h3>
+          {/* Title & Hindi Name */}
+          <div className="flex items-start justify-between gap-2">
+            <h3
+              onClick={() => onSelect(product)}
+              className="text-lg font-serif font-bold text-[#2A1810] group-hover:text-[#9A7730] transition-colors cursor-pointer"
+            >
+              {product.name}
+            </h3>
+            {product.hindiName && (
+              <span className="font-devanagari text-xs text-[#7A5840] shrink-0 mt-1">
+                {product.hindiName}
+              </span>
+            )}
+          </div>
 
           {/* Tagline */}
           <p className="text-xs text-[#5C3A21] line-clamp-2 mt-1.5 font-light leading-relaxed">
             {product.tagline}
           </p>
 
-          {/* Available Pack Sizes */}
-          <div className="flex items-center gap-1.5 mt-3">
-            <span className="text-[10px] text-[#8C6D53] uppercase tracking-wider">Sizes:</span>
-            {product.weights.map((w) => (
-              <span
-                key={w}
-                className="text-[10px] px-1.5 py-0.5 rounded bg-[#FAF7F2] text-[#5C3A21] font-medium border border-[#E8DFD5]"
-              >
-                {w}
-              </span>
-            ))}
+          {/* Price & Pack Sizes Strip */}
+          <div className="mt-3 pt-3 border-t border-[#F0EAE1] flex items-center justify-between">
+            {product.pricingPolicy ? (
+              <div>
+                <span className="text-[10px] uppercase tracking-wider text-[#8C6D53] block">Direct Store Price</span>
+                <span className="text-base font-serif font-bold text-[#2A1810]">
+                  {product.pricingPolicy}
+                </span>
+              </div>
+            ) : (
+              <span className="text-xs font-medium text-[#9A7730]">Enquire for Today's Rate</span>
+            )}
+
+            <div className="flex items-center gap-1">
+              {product.weights.map((w) => (
+                <span
+                  key={w}
+                  className="text-[9px] px-1.5 py-0.5 rounded bg-[#FAF7F2] text-[#5C3A21] font-semibold border border-[#E8DFD5]"
+                >
+                  {w}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
 
@@ -103,7 +130,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onSelect }) =
             onClick={() => onSelect(product)}
             className="text-xs font-medium text-[#5C3A21] hover:text-[#2A1810] inline-flex items-center gap-1 transition-colors cursor-pointer"
           >
-            <span>Learn More</span>
+            <span>Harvest Details</span>
             <ChevronRight className="w-3.5 h-3.5" />
           </button>
 

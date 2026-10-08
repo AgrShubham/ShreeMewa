@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { X, CheckCircle2, MessageCircle, Sparkles, Gift, Layers, Calendar } from 'lucide-react';
+import { X, CheckCircle2, MessageCircle, Sparkles, Gift, Layers, Calendar, Tag } from 'lucide-react';
 import { GiftCollectionItem } from '../../types';
 import { BUSINESS_CONFIG, getWhatsAppLink } from '../../data/business';
 
@@ -29,7 +29,7 @@ export const GiftDetailModal: React.FC<GiftDetailModalProps> = ({ gift, onClose 
 
   if (!gift) return null;
 
-  const whatsappMsg = `Hello Shree Mewa, I would like to inquire about "${gift.name}" (${gift.categoryLabel}). Please share bulk pricing, lead time, and customization options for our upcoming celebration.`;
+  const whatsappMsg = `Hello Shree Mewa, I would like to inquire about "${gift.name}" (${gift.categoryLabel}, Price range: ${gift.priceRange || 'on request'}). Please share bulk pricing, lead time, and customization options for our upcoming celebration.`;
 
   return (
     <div
@@ -66,6 +66,12 @@ export const GiftDetailModal: React.FC<GiftDetailModalProps> = ({ gift, onClose 
               <p className="font-serif text-xl font-bold">{gift.name}</p>
               <p className="text-xs text-[#E8DFD5] mt-1">{gift.boxType}</p>
             </div>
+
+            {gift.moqText && (
+              <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-xs px-2.5 py-1 rounded-md border border-[#E8DFD5] text-[10px] font-bold text-[#2A1810] shadow-xs">
+                {gift.moqText}
+              </div>
+            )}
           </div>
 
           {/* Right: Details */}
@@ -81,6 +87,23 @@ export const GiftDetailModal: React.FC<GiftDetailModalProps> = ({ gift, onClose 
                 <p className="text-xs text-[#5C3A21] font-light mt-1">
                   {gift.tagline}
                 </p>
+
+                {/* Price Range Banner */}
+                {gift.priceRange && (
+                  <div className="mt-3 p-3 rounded-xl bg-[#FAF7F2] border border-[#E8DFD5] flex items-center justify-between">
+                    <div>
+                      <span className="text-[10px] uppercase tracking-wider text-[#8C6D53] block font-semibold">
+                        Estimated Budget Range
+                      </span>
+                      <span className="text-xl font-serif font-bold text-[#2A1810]">
+                        {gift.priceRange}
+                      </span>
+                    </div>
+                    <span className="text-[10px] text-[#9A7730] font-medium bg-white px-2 py-1 rounded-md border border-[#E8DFD5]">
+                      Direct Boutique Rate
+                    </span>
+                  </div>
+                )}
               </div>
 
               <p className="text-sm text-[#3D2314] leading-relaxed font-light">
@@ -120,10 +143,10 @@ export const GiftDetailModal: React.FC<GiftDetailModalProps> = ({ gift, onClose 
               </div>
 
               {/* Occasions */}
-              <div className="space-y-1.5 pt-2">
+              <div className="space-y-1.5 pt-2 border-t border-[#E8DFD5]">
                 <div className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-[#7A5840]">
                   <Calendar className="w-3.5 h-3.5 text-[#C5A059]" />
-                  <span>Recommended For:</span>
+                  <span>Recommended Occasions:</span>
                 </div>
                 <div className="flex flex-wrap gap-1.5">
                   {gift.occasions.map((occ) => (

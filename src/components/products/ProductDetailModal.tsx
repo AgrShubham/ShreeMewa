@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { X, CheckCircle2, MessageCircle, MapPin, Sparkles, ShieldCheck, Scale } from 'lucide-react';
+import { X, CheckCircle2, MessageCircle, MapPin, Sparkles, ShieldCheck, Scale, Phone } from 'lucide-react';
 import { Product } from '../../types';
 import { BUSINESS_CONFIG, getWhatsAppLink } from '../../data/business';
 
@@ -29,7 +29,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product,
 
   if (!product) return null;
 
-  const whatsappMsg = `Hello Shree Mewa, I am interested in inquiring about "${product.name}" (${product.categoryLabel}). Please share details on current availability and prices at the Ramgarh store.`;
+  const whatsappMsg = `Hello Shree Mewa, I am interested in inquiring about "${product.name}" (${product.hindiName || ''}) priced at ${product.pricingPolicy || 'standard rates'}. Please confirm current stock and pack sizes at the Ramgarh store.`;
 
   return (
     <div
@@ -67,9 +67,17 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product,
               {product.origin && (
                 <div className="flex items-center gap-1.5 text-xs text-[#E8DFD5] mt-1">
                   <MapPin className="w-3.5 h-3.5 text-[#C5A059]" />
-                  <span>{product.origin}</span>
+                  <span>Harvest Origin: {product.origin}</span>
                 </div>
               )}
+            </div>
+
+            {/* Top Left Veg Dot */}
+            <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-xs px-2 py-1 rounded-md border border-[#E8DFD5] shadow-xs flex items-center gap-1.5">
+              <div className="w-3.5 h-3.5 border-2 border-emerald-600 flex items-center justify-center rounded-xs">
+                <div className="w-1.5 h-1.5 bg-emerald-600 rounded-full" />
+              </div>
+              <span className="text-[10px] font-semibold text-[#2A1810]">100% Vegetarian</span>
             </div>
           </div>
 
@@ -93,6 +101,23 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product,
                 <p className="text-xs text-[#5C3A21] font-light mt-1">
                   {product.tagline}
                 </p>
+
+                {/* Direct Store Pricing Banner */}
+                {product.pricingPolicy && (
+                  <div className="mt-3 p-3 rounded-xl bg-[#FAF7F2] border border-[#E8DFD5] flex items-center justify-between">
+                    <div>
+                      <span className="text-[10px] uppercase tracking-wider text-[#8C6D53] block font-semibold">
+                        Direct Store Price
+                      </span>
+                      <span className="text-xl font-serif font-bold text-[#2A1810]">
+                        {product.pricingPolicy}
+                      </span>
+                    </div>
+                    <span className="text-[10px] text-[#9A7730] font-medium bg-white px-2 py-1 rounded-md border border-[#E8DFD5]">
+                      Ramgarh Retail Rate
+                    </span>
+                  </div>
+                )}
               </div>
 
               <p className="text-sm text-[#3D2314] leading-relaxed font-light">
@@ -115,7 +140,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product,
               </div>
 
               {/* Pack Sizes & Packaging */}
-              <div className="space-y-2 pt-2">
+              <div className="space-y-2 pt-2 border-t border-[#E8DFD5]">
                 <div className="flex items-center justify-between text-xs">
                   <span className="text-[#5C3A21] font-medium">Standard Pack Sizes:</span>
                   <div className="flex items-center gap-1.5">
@@ -132,6 +157,12 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product,
                   </p>
                 )}
               </div>
+
+              {/* FSSAI Regulatory Footnote */}
+              <div className="flex items-center gap-2 text-[10px] text-[#7A5840] pt-1">
+                <ShieldCheck className="w-3.5 h-3.5 text-[#C5A059]" />
+                <span>FSSAI Lic. No: {BUSINESS_CONFIG.fssaiNumber} • 100% Unadulterated</span>
+              </div>
             </div>
 
             {/* Store & WhatsApp CTA */}
@@ -143,12 +174,12 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product,
                 className="w-full py-3 px-4 bg-[#25D366] hover:bg-[#20ba59] text-white text-sm font-semibold rounded-xl flex items-center justify-center gap-2 shadow-sm transition-all"
               >
                 <MessageCircle className="w-4 h-4 fill-white" />
-                <span>Enquire Availability on WhatsApp</span>
+                <span>Order / Enquire on WhatsApp</span>
               </a>
 
               <div className="flex items-center justify-between text-[11px] text-[#7A5840] px-1">
                 <span>Available at Ramgarh Store</span>
-                <span className="font-medium text-[#2A1810]">Call: {BUSINESS_CONFIG.phoneDisplay}</span>
+                <span className="font-medium text-[#2A1810]">Desk: {BUSINESS_CONFIG.phoneDisplay}</span>
               </div>
             </div>
           </div>

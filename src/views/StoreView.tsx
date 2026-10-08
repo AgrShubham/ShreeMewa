@@ -4,12 +4,15 @@ import {
   Clock,
   Phone,
   MessageCircle,
-  Car,
+  Truck,
   CheckCircle2,
   Navigation,
   Sparkles,
   Store,
-  ShieldCheck
+  ShieldCheck,
+  Star,
+  CreditCard,
+  Package
 } from 'lucide-react';
 import { SectionHeading } from '../components/ui/SectionHeading';
 import { BUSINESS_CONFIG, getWhatsAppLink } from '../data/business';
@@ -41,7 +44,7 @@ export const StoreView: React.FC = () => {
                 </div>
                 <div>
                   <span className="text-[10px] uppercase tracking-wider font-bold text-[#9A7730] block">
-                    Boutique Location
+                    Boutique Location • Est. {BUSINESS_CONFIG.yearEstablished}
                   </span>
                   <h3 className="text-2xl font-serif font-bold text-[#2A1810]">
                     {BUSINESS_CONFIG.name} Showroom
@@ -55,7 +58,7 @@ export const StoreView: React.FC = () => {
                 </div>
               </div>
 
-              {/* Hours & Contact */}
+              {/* Hours & Dual Contact */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-[#E8DFD5] text-xs">
                 <div className="p-4 rounded-xl bg-[#FAF7F2] border border-[#E8DFD5] space-y-1">
                   <div className="flex items-center gap-1.5 font-bold text-[#2A1810]">
@@ -69,28 +72,32 @@ export const StoreView: React.FC = () => {
                 <div className="p-4 rounded-xl bg-[#FAF7F2] border border-[#E8DFD5] space-y-1">
                   <div className="flex items-center gap-1.5 font-bold text-[#2A1810]">
                     <Phone className="w-4 h-4 text-[#C5A059]" />
-                    <span>Direct Desk</span>
+                    <span>Store Calling Desks</span>
                   </div>
-                  <p className="text-[#2A1810] font-bold">{BUSINESS_CONFIG.phoneDisplay}</p>
-                  <p className="text-[10px] text-[#7A5840]">Call for directions or inquiries</p>
+                  <a href={`tel:${BUSINESS_CONFIG.phone}`} className="text-[#2A1810] font-bold block hover:underline">
+                    Desk: {BUSINESS_CONFIG.phoneDisplay}
+                  </a>
+                  <a href={`tel:${BUSINESS_CONFIG.secondaryPhone}`} className="text-[#7A5840] text-[11px] block hover:underline">
+                    Alt: {BUSINESS_CONFIG.secondaryPhoneDisplay}
+                  </a>
                 </div>
               </div>
 
               {/* Action Buttons */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
+              <div className="grid grid-cols-1 sm:grid-cols-4 gap-2.5 pt-2">
                 <a
                   href={BUSINESS_CONFIG.googleMapsDirectionsUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="py-3 px-4 bg-[#C5A059] hover:bg-[#B38E46] text-[#2A1810] rounded-xl text-xs font-bold text-center transition-colors shadow-xs flex items-center justify-center gap-2"
+                  className="py-3 px-3 bg-[#C5A059] hover:bg-[#B38E46] text-[#2A1810] rounded-xl text-xs font-bold text-center transition-colors shadow-xs flex items-center justify-center gap-1.5"
                 >
                   <Navigation className="w-4 h-4 text-[#2A1810]" />
-                  <span>Get Directions</span>
+                  <span>Directions</span>
                 </a>
 
                 <a
                   href={`tel:${BUSINESS_CONFIG.phone}`}
-                  className="py-3 px-4 bg-[#FAF7F2] hover:bg-[#F5EFEB] text-[#2A1810] border border-[#E8DFD5] rounded-xl text-xs font-bold text-center transition-colors shadow-xs flex items-center justify-center gap-2"
+                  className="py-3 px-3 bg-[#FAF7F2] hover:bg-[#F5EFEB] text-[#2A1810] border border-[#E8DFD5] rounded-xl text-xs font-bold text-center transition-colors shadow-xs flex items-center justify-center gap-1.5"
                 >
                   <Phone className="w-4 h-4 text-[#C5A059]" />
                   <span>Call Store</span>
@@ -100,10 +107,20 @@ export const StoreView: React.FC = () => {
                   href={getWhatsAppLink('Hello Shree Mewa, I am on my way to visit your Ramgarh store.')}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="py-3 px-4 bg-[#25D366] hover:bg-[#20ba59] text-white rounded-xl text-xs font-bold text-center transition-colors shadow-xs flex items-center justify-center gap-2"
+                  className="py-3 px-3 bg-[#25D366] hover:bg-[#20ba59] text-white rounded-xl text-xs font-bold text-center transition-colors shadow-xs flex items-center justify-center gap-1.5"
                 >
                   <MessageCircle className="w-4 h-4 fill-white" />
                   <span>WhatsApp</span>
+                </a>
+
+                <a
+                  href={BUSINESS_CONFIG.googleReviewUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="py-3 px-3 bg-[#2A1810] hover:bg-[#3D2314] text-[#DFCA9B] rounded-xl text-xs font-bold text-center transition-colors shadow-xs flex items-center justify-center gap-1.5"
+                >
+                  <Star className="w-3.5 h-3.5 fill-[#C5A059] text-[#C5A059]" />
+                  <span>Review Us</span>
                 </a>
               </div>
             </div>
@@ -145,7 +162,7 @@ export const StoreView: React.FC = () => {
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
             />
-            <div className="p-4 bg-[#FAF7F2] text-xs text-[#5C3A21] flex items-center justify-between border-t border-[#E8DFD5]">
+            <div className="p-4 bg-[#FAF7F2] text-xs text-[#5C3A21] flex flex-wrap items-center justify-between gap-2 border-t border-[#E8DFD5]">
               <span>📍 {BUSINESS_CONFIG.addressLine}, {BUSINESS_CONFIG.city}, {BUSINESS_CONFIG.state}</span>
               <a
                 href={BUSINESS_CONFIG.googleMapsDirectionsUrl}
@@ -153,8 +170,57 @@ export const StoreView: React.FC = () => {
                 rel="noopener noreferrer"
                 className="font-bold text-[#9A7730] hover:text-[#2A1810] transition-colors"
               >
-                Open in Maps App →
+                Open in Google Maps →
               </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Operational Policies & Delivery Assurance */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="p-8 sm:p-10 rounded-3xl bg-[#F5EFEB] border border-[#E8DFD5] shadow-sm">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="flex items-start gap-3.5">
+              <div className="w-10 h-10 rounded-xl bg-white border border-[#E8DFD5] flex items-center justify-center text-[#C5A059] shrink-0 shadow-2xs">
+                <Truck className="w-5 h-5" />
+              </div>
+              <div className="space-y-1">
+                <h4 className="font-serif font-bold text-base text-[#2A1810]">
+                  Delivery Coverage
+                </h4>
+                <p className="text-xs text-[#5C3A21] font-light leading-relaxed">
+                  {BUSINESS_CONFIG.deliveryCoverage}. {BUSINESS_CONFIG.freeDeliveryThreshold}.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-3.5">
+              <div className="w-10 h-10 rounded-xl bg-white border border-[#E8DFD5] flex items-center justify-center text-[#C5A059] shrink-0 shadow-2xs">
+                <CreditCard className="w-5 h-5" />
+              </div>
+              <div className="space-y-1">
+                <h4 className="font-serif font-bold text-base text-[#2A1810]">
+                  Convenient Payments
+                </h4>
+                <p className="text-xs text-[#5C3A21] font-light leading-relaxed">
+                  {BUSINESS_CONFIG.paymentModes}. Instant GST bills provided for corporate and wedding purchases.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-3.5">
+              <div className="w-10 h-10 rounded-xl bg-white border border-[#E8DFD5] flex items-center justify-center text-[#C5A059] shrink-0 shadow-2xs">
+                <ShieldCheck className="w-5 h-5" />
+              </div>
+              <div className="space-y-1">
+                <h4 className="font-serif font-bold text-base text-[#2A1810]">
+                  Certified Food Compliance
+                </h4>
+                <p className="text-xs text-[#5C3A21] font-light leading-relaxed">
+                  FSSAI Lic. No. <strong>{BUSINESS_CONFIG.fssaiNumber}</strong> • GSTIN: <strong>{BUSINESS_CONFIG.gstin}</strong> • 100% Pure Vegetarian assurance.
+                </p>
+              </div>
             </div>
           </div>
         </div>

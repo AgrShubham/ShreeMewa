@@ -96,7 +96,7 @@ export const CorporateGiftingView: React.FC = () => {
               GST Tax Invoicing & Compliance
             </h3>
             <p className="text-xs text-[#5C3A21] font-light leading-relaxed">
-              Clear corporate GST invoices, standardized procurement agreements, and transparent unit pricing breakdown.
+              Official GSTIN: <strong className="font-mono text-[#2A1810]">{BUSINESS_CONFIG.gstin}</strong>. Clear corporate tax invoices, input tax credit (ITC) support, and standardized procurement agreements.
             </p>
           </div>
 

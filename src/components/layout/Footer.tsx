@@ -190,12 +190,14 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
 
               <div className="flex items-center gap-2.5">
                 <Phone className="w-4 h-4 text-[#C5A059] shrink-0" />
-                <a
-                  href={`tel:${BUSINESS_CONFIG.phone}`}
-                  className="text-xs text-[#E8DFD5] hover:text-white transition-colors"
-                >
-                  {BUSINESS_CONFIG.phoneDisplay}
-                </a>
+                <div className="text-xs text-[#E8DFD5]">
+                  <a href={`tel:${BUSINESS_CONFIG.phone}`} className="hover:text-white transition-colors block">
+                    Desk: {BUSINESS_CONFIG.phoneDisplay}
+                  </a>
+                  <a href={`tel:${BUSINESS_CONFIG.secondaryPhone}`} className="text-[#A8988A] hover:text-white transition-colors text-[11px] block">
+                    Alt: {BUSINESS_CONFIG.secondaryPhoneDisplay}
+                  </a>
+                </div>
               </div>
 
               <div className="flex items-center gap-2.5">
@@ -211,27 +213,62 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               </div>
             </div>
 
-            <div className="pt-2">
+            <div className="pt-2 flex flex-wrap gap-2">
               <a
                 href={BUSINESS_CONFIG.googleMapsDirectionsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-bold text-[#2A1810] bg-[#DFCA9B] hover:bg-[#C5A059] rounded-lg transition-colors"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-[#2A1810] bg-[#DFCA9B] hover:bg-[#C5A059] rounded-lg transition-colors"
               >
-                <span>Get Driving Directions</span>
+                <span>Directions</span>
                 <ArrowUpRight className="w-3.5 h-3.5" />
+              </a>
+
+              <a
+                href={BUSINESS_CONFIG.googleReviewUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-[#FAF7F2] bg-[#3D2314] hover:bg-[#5C3A21] border border-[#5C3A21] rounded-lg transition-colors"
+                title="Write a Google Review"
+              >
+                <span>⭐ Google Review</span>
               </a>
             </div>
           </div>
         </div>
 
+        {/* Regulatory & Food Compliance Trust Strip */}
+        <div className="py-6 border-b border-[#3D2314] flex flex-wrap items-center justify-between gap-4 text-xs text-[#A8988A]">
+          <div className="flex flex-wrap items-center gap-4 sm:gap-6">
+            <div className="flex items-center gap-2">
+              <div className="w-3.5 h-3.5 border-2 border-emerald-500 flex items-center justify-center rounded-xs shrink-0">
+                <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full" />
+              </div>
+              <span className="text-[#E8DFD5] font-medium">100% Pure Vegetarian</span>
+            </div>
+
+            <div className="flex items-center gap-1.5">
+              <ShieldCheck className="w-4 h-4 text-[#C5A059]" />
+              <span>FSSAI Lic. No: <strong className="text-[#FAF7F2] font-mono">{BUSINESS_CONFIG.fssaiNumber}</strong></span>
+            </div>
+
+            <div className="flex items-center gap-1.5">
+              <span>GSTIN: <strong className="text-[#FAF7F2] font-mono">{BUSINESS_CONFIG.gstin}</strong></span>
+            </div>
+          </div>
+
+          <div className="text-[11px] text-[#A8988A]">
+            <span>{BUSINESS_CONFIG.entityType} • Bazar Samiti, Ramgarh</span>
+          </div>
+        </div>
+
         {/* Bottom Strip */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#A8988A]">
+        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#A8988A]">
           <p>© {currentYear} {BUSINESS_CONFIG.name}. All rights reserved.</p>
           <div className="flex items-center gap-4 text-[11px]">
             <span>Ramgarh Cantonment, Jharkhand, India</span>
             <span>•</span>
-            <span>Authentic Grade Assurance</span>
+            <span>Est. {BUSINESS_CONFIG.yearEstablished}</span>
             <span>•</span>
             <button
               onClick={() => handleNav('contact')}

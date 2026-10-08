@@ -1,5 +1,5 @@
 import React from 'react';
-import { Sparkles, MessageCircle, Gift, ChevronRight, Eye } from 'lucide-react';
+import { Sparkles, MessageCircle, Gift, ChevronRight, Eye, Tag } from 'lucide-react';
 import { GiftCollectionItem } from '../../types';
 import { getWhatsAppLink } from '../../data/business';
 
@@ -9,12 +9,15 @@ interface GiftCardProps {
 }
 
 export const GiftCard: React.FC<GiftCardProps> = ({ gift, onSelect }) => {
-  const whatsappMsg = `Hello Shree Mewa, I am interested in inquiring about the "${gift.name}" (${gift.categoryLabel}). Please share photos, box customization options, and pricing.`;
+  const whatsappMsg = `Hello Shree Mewa, I am interested in inquiring about the "${gift.name}" (${gift.categoryLabel}, price range: ${gift.priceRange || 'on request'}). Please share box customization options and availability for Ramgarh delivery.`;
 
   return (
     <div className="group bg-white rounded-3xl border border-[#E8DFD5] overflow-hidden hover:shadow-2xl hover:border-[#C5A059] hover:scale-[1.025] hover:-translate-y-1.5 transition-all duration-300 ease-out will-change-transform flex flex-col h-full">
       {/* Visual Image */}
-      <div className="relative aspect-4/3 overflow-hidden bg-[#F5EFEB]">
+      <div
+        onClick={() => onSelect(gift)}
+        className="relative aspect-4/3 overflow-hidden bg-[#F5EFEB] cursor-pointer"
+      >
         <img
           src={gift.image}
           alt={gift.name}
@@ -24,7 +27,10 @@ export const GiftCard: React.FC<GiftCardProps> = ({ gift, onSelect }) => {
 
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-5">
           <button
-            onClick={() => onSelect(gift)}
+            onClick={(e) => {
+              e.stopPropagation();
+              onSelect(gift)}
+            }
             className="w-full py-2.5 px-4 bg-white/95 backdrop-blur-sm text-[#2A1810] text-xs font-semibold rounded-xl flex items-center justify-center gap-1.5 border border-[#E8DFD5] hover:border-[#C5A059] shadow-sm hover:bg-[#FAF7F2] transition-colors cursor-pointer"
           >
             <Eye className="w-3.5 h-3.5 text-[#C5A059]" />
@@ -39,10 +45,17 @@ export const GiftCard: React.FC<GiftCardProps> = ({ gift, onSelect }) => {
             <span>{gift.categoryLabel}</span>
           </span>
         </div>
+
+        {/* MOQ Badge */}
+        {gift.moqText && (
+          <div className="absolute bottom-3 right-3 bg-white/90 backdrop-blur-xs px-2 py-0.5 rounded-full border border-[#E8DFD5] text-[9px] font-bold text-[#2A1810]">
+            {gift.moqText.split('/')[0]}
+          </div>
+        )}
       </div>
 
       {/* Content */}
-      <div className="p-6 flex flex-col flex-grow justify-between space-y-5 bg-white">
+      <div className="p-6 flex flex-col flex-grow justify-between space-y-4 bg-white">
         <div className="space-y-3">
           <div>
             <span className="text-[10px] uppercase font-semibold tracking-wider text-[#9A7730] block mb-1">
@@ -60,8 +73,20 @@ export const GiftCard: React.FC<GiftCardProps> = ({ gift, onSelect }) => {
             {gift.tagline}
           </p>
 
+          {/* Pricing Range Tag */}
+          {gift.priceRange && (
+            <div className="pt-2 flex items-center justify-between border-t border-[#F0EAE1]">
+              <span className="text-[10px] uppercase tracking-wider text-[#8C6D53] font-semibold">
+                Estimate Range:
+              </span>
+              <span className="text-sm font-serif font-bold text-[#2A1810] bg-[#FAF7F2] px-2.5 py-0.5 rounded-md border border-[#E8DFD5]">
+                {gift.priceRange}
+              </span>
+            </div>
+          )}
+
           {/* Included Items Preview */}
-          <div className="space-y-1.5 pt-2 border-t border-[#E8DFD5]">
+          <div className="space-y-1.5 pt-1">
             <span className="text-[10px] uppercase tracking-wider font-semibold text-[#8C6D53] block">
               Curated Contents:
             </span>
@@ -79,22 +104,10 @@ export const GiftCard: React.FC<GiftCardProps> = ({ gift, onSelect }) => {
               )}
             </ul>
           </div>
-
-          {/* Suitable Occasions Pills */}
-          <div className="flex flex-wrap gap-1 pt-1">
-            {gift.occasions.slice(0, 3).map((occ) => (
-              <span
-                key={occ}
-                className="text-[10px] px-2 py-0.5 rounded-full bg-[#FAF7F2] text-[#5C3A21] border border-[#E8DFD5]"
-              >
-                {occ}
-              </span>
-            ))}
-          </div>
         </div>
 
         {/* Card Footer Actions */}
-        <div className="pt-4 border-t border-[#E8DFD5] flex items-center justify-between gap-3">
+        <div className="pt-3 border-t border-[#E8DFD5] flex items-center justify-between gap-3">
           <button
             onClick={() => onSelect(gift)}
             className="text-xs font-medium text-[#5C3A21] hover:text-[#2A1810] inline-flex items-center gap-1 transition-colors cursor-pointer"

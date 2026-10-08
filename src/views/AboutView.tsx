@@ -1,5 +1,5 @@
 import React from 'react';
-import { ShieldCheck, Heart, Sparkles, MapPin, Store, Award } from 'lucide-react';
+import { ShieldCheck, Heart, Sparkles, MapPin, Store, Award, CheckCircle2 } from 'lucide-react';
 import { SectionHeading } from '../components/ui/SectionHeading';
 import { Logo } from '../components/brand/Logo';
 import { BUSINESS_CONFIG } from '../data/business';
@@ -33,13 +33,16 @@ export const AboutView: React.FC = () => {
             </div>
             <div className="md:col-span-7 space-y-4">
               <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#9A7730]">
-                OUR PHILOSOPHY
+                OUR ORIGIN & PURPOSE • EST. {BUSINESS_CONFIG.yearEstablished}
               </span>
               <h3 className="text-2xl sm:text-3xl font-serif font-bold text-[#2A1810]">
                 Dry Fruits as Sacred Tokens of Well-Being
               </h3>
               <p className="text-sm text-[#5C3A21] leading-relaxed font-light">
-                In Indian culture, presenting mewa (dry fruits) is not merely a gesture of gift-giving; it is an auspicious blessing for health, longevity, and prosperity. Shree Mewa was founded to restore reverence to this tradition by eliminating chemical polish, sub-standard mixing, and lackluster packaging.
+                {BUSINESS_CONFIG.founderStory}
+              </p>
+              <p className="text-sm text-[#5C3A21] leading-relaxed font-light">
+                In Indian culture, presenting mewa (dry fruits) is not merely a gesture of gift-giving; it is an auspicious blessing for health, longevity, and prosperity. We founded Shree Mewa to restore pure reverence to this tradition by eliminating chemical polish, sub-standard mixing, and lackluster packaging.
               </p>
             </div>
           </div>
@@ -48,13 +51,16 @@ export const AboutView: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
             <div className="md:col-span-7 space-y-4 order-2 md:order-1">
               <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#9A7730]">
-                SELECTION DISCIPLINE
+                SOURCING INTEGRITY
               </span>
               <h3 className="text-2xl sm:text-3xl font-serif font-bold text-[#2A1810]">
-                Rigorous Grading, Zero Compromise
+                Direct Harvests & Trusted Wholesale Tie-Ups
               </h3>
               <p className="text-sm text-[#5C3A21] leading-relaxed font-light">
-                Every batch arriving at our Ramgarh Cantonment facility undergoes strict physical inspection. We assess kernel size uniformity, moisture balance, natural sweetness, and crunch. From oil-dense Mamra almonds to natural whole-white W-180 cashews, we offer only produce we are proud to serve in our own homes.
+                {BUSINESS_CONFIG.sourcingUSP}
+              </p>
+              <p className="text-sm text-[#5C3A21] leading-relaxed font-light">
+                Every batch arriving at our Ramgarh Cantonment facility undergoes strict physical inspection for moisture balance, kernel size uniformity, natural sweetness, and crunch. We offer only produce we are proud to serve to our own families.
               </p>
             </div>
             <div className="md:col-span-5 aspect-4/3 rounded-3xl overflow-hidden border border-[#E8DFD5] bg-white order-1 md:order-2 shadow-md">
@@ -107,11 +113,15 @@ export const AboutView: React.FC = () => {
           </div>
 
           <p className="text-sm text-[#5C3A21] leading-relaxed font-light">
-            We are honored to serve the vibrant community of Ramgarh Cantonment, Ranchi, Hazaribagh, and neighboring districts. We welcome you to visit our physical showroom on Main Road to experience our warm hospitality and harvest treasures firsthand.
+            We are honored to serve the vibrant community of Ramgarh Cantonment, Ranchi, Hazaribagh, Bokaro, and neighboring districts. We welcome you to visit our physical showroom at Bazar Samiti to experience our warm hospitality and harvest treasures firsthand.
           </p>
 
-          <div className="pt-2 text-xs text-[#8C6D53]">
-            <span className="font-semibold text-[#2A1810]">{BUSINESS_CONFIG.addressLine}</span> • <span>Open 7 Days (10 AM - 9 PM)</span>
+          <div className="pt-2 text-xs text-[#8C6D53] space-y-1">
+            <p className="font-semibold text-[#2A1810]">{BUSINESS_CONFIG.addressLine}, {BUSINESS_CONFIG.landmark}</p>
+            <p>{BUSINESS_CONFIG.city}, {BUSINESS_CONFIG.state} — {BUSINESS_CONFIG.pincode}</p>
+            <p className="pt-2 font-mono text-[11px] text-[#7A5840]">
+              FSSAI Lic: {BUSINESS_CONFIG.fssaiNumber} • GSTIN: {BUSINESS_CONFIG.gstin}
+            </p>
           </div>
         </div>
       </section>
