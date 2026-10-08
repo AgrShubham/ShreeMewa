@@ -1,7 +1,8 @@
 import React from 'react';
-import { MessageCircle, Sparkles, ChevronRight, Eye, MapPin } from 'lucide-react';
+import { MessageCircle, Sparkles, ChevronRight, Eye, MapPin, ShoppingBag } from 'lucide-react';
 import { Product } from '../../types';
 import { getWhatsAppLink } from '../../data/business';
+import { useCart } from '../../context/CartContext';
 
 interface ProductCardProps {
   product: Product;
@@ -9,6 +10,7 @@ interface ProductCardProps {
 }
 
 export const ProductCard: React.FC<ProductCardProps> = ({ product, onSelect }) => {
+  const { addProduct } = useCart();
   const whatsappMsg = `Hello Shree Mewa, I am interested in "${product.name}" (${product.hindiName || ''}) priced at ${product.pricingPolicy || 'standard rates'}. Could you please confirm current stock and pack sizes available at your Ramgarh store?`;
 
   return (
@@ -125,25 +127,36 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onSelect }) =
         </div>
 
         {/* Action Row */}
-        <div className="pt-3 border-t border-[#E8DFD5] flex items-center justify-between gap-2">
+        <div className="pt-3 border-t border-[#E8DFD5] flex items-center justify-between gap-1.5">
           <button
             onClick={() => onSelect(product)}
-            className="text-xs font-medium text-[#5C3A21] hover:text-[#2A1810] inline-flex items-center gap-1 transition-colors cursor-pointer"
+            className="text-xs font-medium text-[#5C3A21] hover:text-[#2A1810] inline-flex items-center gap-0.5 transition-colors cursor-pointer"
           >
-            <span>Harvest Details</span>
-            <ChevronRight className="w-3.5 h-3.5" />
+            <span>Details</span>
+            <ChevronRight className="w-3 h-3" />
           </button>
 
-          <a
-            href={getWhatsAppLink(whatsappMsg)}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#25D366]/15 hover:bg-[#25D366] text-[#1E7E34] hover:text-white rounded-lg text-xs font-semibold transition-all duration-200"
-            title="Enquire on WhatsApp"
-          >
-            <MessageCircle className="w-3.5 h-3.5 fill-current" />
-            <span>Enquire</span>
-          </a>
+          <div className="flex items-center gap-1.5">
+            <button
+              onClick={() => addProduct(product, '500g', 1)}
+              className="inline-flex items-center gap-1 px-2.5 py-1.5 bg-[#FAF7F2] hover:bg-[#E8DFD5] text-[#2A1810] border border-[#E8DFD5] hover:border-[#C5A059] rounded-lg text-xs font-bold transition-all cursor-pointer shadow-2xs"
+              title="Add 500g to Inquiry Bag"
+            >
+              <ShoppingBag className="w-3.5 h-3.5 text-[#C5A059]" />
+              <span>+ Bag</span>
+            </button>
+
+            <a
+              href={getWhatsAppLink(whatsappMsg)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 px-2.5 py-1.5 bg-[#25D366]/15 hover:bg-[#25D366] text-[#1E7E34] hover:text-white rounded-lg text-xs font-semibold transition-all duration-200"
+              title="Enquire on WhatsApp"
+            >
+              <MessageCircle className="w-3.5 h-3.5 fill-current" />
+              <span>Enquire</span>
+            </a>
+          </div>
         </div>
       </div>
     </div>

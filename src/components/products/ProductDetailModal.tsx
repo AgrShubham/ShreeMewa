@@ -1,7 +1,20 @@
-import React, { useEffect } from 'react';
-import { X, CheckCircle2, MessageCircle, MapPin, Sparkles, ShieldCheck, Scale, Phone } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import {
+  X,
+  CheckCircle2,
+  MessageCircle,
+  MapPin,
+  Sparkles,
+  ShieldCheck,
+  Scale,
+  Phone,
+  ShoppingBag,
+  Plus,
+  Minus
+} from 'lucide-react';
 import { Product } from '../../types';
 import { BUSINESS_CONFIG, getWhatsAppLink } from '../../data/business';
+import { useCart } from '../../context/CartContext';
 
 interface ProductDetailModalProps {
   product: Product | null;
@@ -9,6 +22,21 @@ interface ProductDetailModalProps {
 }
 
 export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product, onClose }) => {
+  const { addProduct } = useCart();
+  const [selectedWeight, setSelectedWeight] = useState<string>('500g');
+  const [quantity, setQuantity] = useState<number>(1);
+
+  // Initialize selected weight when product changes
+  useEffect(() => {
+    if (product) {
+      const defaultWeight = product.weights.includes('500g')
+        ? '500g'
+        : product.weights[0] || '500g';
+      setSelectedWeight(defaultWeight);
+      setQuantity(1);
+    }
+  }, [product]);
+
   useEffect(() => {
     if (!product) return;
     const originalOverflow = document.body.style.overflow;
@@ -29,7 +57,12 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product,
 
   if (!product) return null;
 
-  const whatsappMsg = `Hello Shree Mewa, I am interested in inquiring about "${product.name}" (${product.hindiName || ''}) priced at ${product.pricingPolicy || 'standard rates'}. Please confirm current stock and pack sizes at the Ramgarh store.`;
+  const whatsappMsg = `Hello Shree Mewa, I am interested in ordering ${quantity} × "${product.name}" (${selectedWeight}, ${product.pricingPolicy || 'standard rates'}). Please confirm current stock and delivery at the Ramgarh store.`;
+
+  const handleAddToBag = () => {
+    addProduct(product, selectedWeight, quantity);
+    onClose();
+  };
 
   return (
     <div
@@ -82,7 +115,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product,
           </div>
 
           {/* Right: Content & Actions */}
-          <div className="p-6 sm:p-8 flex flex-col justify-between space-y-6 bg-white">
+          <div className="p-6 sm:p-8 flex flex-col justify-between space-y-6 max-h-[85vh] overflow-y-auto bg-white">
             <div className="space-y-4">
               <div>
                 <div className="flex items-center gap-2 mb-1">
@@ -124,7 +157,56 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product,
                 {product.description}
               </p>
 
-              {/* Key Features */}
+              {/* Pack Sizes Selector */}
+              <div className="space-y-2 pt-2 border-t border-[#E8DFD5]">
+                <div className="flex items-center justify-between text-xs">
+                  <span className="text-[#5C3A21] font-bold">Select Pack Weight:</span>
+                  <div className="flex items-center gap-1.5">
+                    {product.weights.map((w) => (
+                      <button
+                        key={w}
+                        type="button"
+                        onClick={() => setSelectedWeight(w)}
+                        className={`px-3 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                          selectedWeight === w
+                            ? 'bg-[#C5A059] text-[#2A1810] shadow-2xs'
+                            : 'bg-[#FAF7F2] text-[#5C3A21] border border-[#E8DFD5] hover:border-[#C5A059]'
+                        }`}
+                      >
+                        {w}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Quantity Stepper */}
+                <div className="flex items-center justify-between text-xs pt-1">
+                  <span className="text-[#5C3A21] font-bold">Quantity:</span>
+                  <div className="inline-flex items-center border border-[#E8DFD5] rounded-lg bg-[#FAF7F2]">
+                    <button
+                      type="button"
+                      onClick={() => setQuantity((q) => Math.max(1, q - 1))}
+                      className="p-1.5 hover:bg-[#E8DFD5] text-[#2A1810] rounded-l-lg transition-colors cursor-pointer"
+                      aria-label="Decrease quantity"
+                    >
+                      <Minus className="w-3.5 h-3.5" />
+                    </button>
+                    <span className="px-3 text-xs font-bold text-[#2A1810]">
+                      {quantity}
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => setQuantity((q) => q + 1)}
+                      className="p-1.5 hover:bg-[#E8DFD5] text-[#2A1810] rounded-r-lg transition-colors cursor-pointer"
+                      aria-label="Increase quantity"
+                    >
+                      <Plus className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              {/* Quality Highlights */}
               <div className="space-y-2 pt-2 border-t border-[#E8DFD5]">
                 <h4 className="text-xs font-semibold uppercase tracking-wider text-[#9A7730]">
                   Quality Highlights:
@@ -139,45 +221,35 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product,
                 </ul>
               </div>
 
-              {/* Pack Sizes & Packaging */}
-              <div className="space-y-2 pt-2 border-t border-[#E8DFD5]">
-                <div className="flex items-center justify-between text-xs">
-                  <span className="text-[#5C3A21] font-medium">Standard Pack Sizes:</span>
-                  <div className="flex items-center gap-1.5">
-                    {product.weights.map((w) => (
-                      <span key={w} className="px-2 py-0.5 rounded bg-[#FAF7F2] text-[#2A1810] font-semibold border border-[#E8DFD5]">
-                        {w}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-                {product.packagingType && (
-                  <p className="text-[11px] text-[#7A5840]">
-                    Packaging: <span className="text-[#2A1810] font-medium">{product.packagingType}</span>
-                  </p>
-                )}
-              </div>
-
               {/* FSSAI Regulatory Footnote */}
-              <div className="flex items-center gap-2 text-[10px] text-[#7A5840] pt-1">
+              <div className="flex items-center gap-2 text-[10px] text-[#7A5840] pt-1 border-t border-[#E8DFD5]">
                 <ShieldCheck className="w-3.5 h-3.5 text-[#C5A059]" />
                 <span>FSSAI Lic. No: {BUSINESS_CONFIG.fssaiNumber} • 100% Unadulterated</span>
               </div>
             </div>
 
-            {/* Store & WhatsApp CTA */}
-            <div className="space-y-3 pt-4 border-t border-[#E8DFD5]">
+            {/* Actions: Add to Bag + WhatsApp */}
+            <div className="space-y-2.5 pt-4 border-t border-[#E8DFD5]">
+              <button
+                type="button"
+                onClick={handleAddToBag}
+                className="w-full py-3 px-4 bg-[#C5A059] hover:bg-[#B38E46] text-[#2A1810] font-bold text-xs rounded-xl flex items-center justify-center gap-2 shadow-sm transition-all cursor-pointer"
+              >
+                <ShoppingBag className="w-4 h-4 text-[#2A1810]" />
+                <span>Add {quantity} × {selectedWeight} to Inquiry Bag</span>
+              </button>
+
               <a
                 href={getWhatsAppLink(whatsappMsg)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full py-3 px-4 bg-[#25D366] hover:bg-[#20ba59] text-white text-sm font-semibold rounded-xl flex items-center justify-center gap-2 shadow-sm transition-all"
+                className="w-full py-2.5 px-4 bg-[#25D366] hover:bg-[#20ba59] text-white text-xs font-semibold rounded-xl flex items-center justify-center gap-2 shadow-xs transition-all"
               >
-                <MessageCircle className="w-4 h-4 fill-white" />
-                <span>Order / Enquire on WhatsApp</span>
+                <MessageCircle className="w-3.5 h-3.5 fill-white" />
+                <span>Order Directly on WhatsApp</span>
               </a>
 
-              <div className="flex items-center justify-between text-[11px] text-[#7A5840] px-1">
+              <div className="flex items-center justify-between text-[11px] text-[#7A5840] px-1 pt-1">
                 <span>Available at Ramgarh Store</span>
                 <span className="font-medium text-[#2A1810]">Desk: {BUSINESS_CONFIG.phoneDisplay}</span>
               </div>

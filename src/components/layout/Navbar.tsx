@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, MessageCircle, Phone, MapPin, Sparkles, BookOpen } from 'lucide-react';
+import { Menu, X, MessageCircle, Phone, MapPin, Sparkles, BookOpen, ShoppingBag } from 'lucide-react';
 import { Logo } from '../brand/Logo';
 import { NAV_ITEMS } from '../../data/navigation';
 import { BUSINESS_CONFIG, getWhatsAppLink } from '../../data/business';
 import { ActivePage } from '../../types';
+import { useCart } from '../../context/CartContext';
 
 interface NavbarProps {
   activePage: ActivePage;
@@ -16,6 +17,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onNavigate,
   onOpenCatalogue,
 }) => {
+  const { totalItemsCount, openCart } = useCart();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -122,18 +124,33 @@ export const Navbar: React.FC<NavbarProps> = ({
             })}
           </div>
 
-          {/* Action CTAs: Catalogue + WhatsApp */}
-          <div className="hidden sm:flex items-center gap-3">
+          {/* Action CTAs: Catalogue + Bag + WhatsApp */}
+          <div className="hidden sm:flex items-center gap-2.5">
             <button
               onClick={() => {
                 if (onOpenCatalogue) onOpenCatalogue();
                 else handleNavClick('catalogue');
               }}
-              className="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-medium text-[#2A1810] bg-white border border-[#E8DFD5] hover:border-[#C5A059] hover:bg-[#F7F2EB] rounded-full transition-all shadow-2xs cursor-pointer"
+              className="inline-flex items-center gap-1.5 px-3 py-2 text-xs font-medium text-[#2A1810] bg-white border border-[#E8DFD5] hover:border-[#C5A059] hover:bg-[#F7F2EB] rounded-full transition-all shadow-2xs cursor-pointer"
               title="View Digital Gifting Catalogue"
             >
               <BookOpen className="w-3.5 h-3.5 text-[#C5A059]" />
               <span>Lookbook</span>
+            </button>
+
+            {/* Inquiry Bag Button */}
+            <button
+              onClick={openCart}
+              className="relative inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-bold text-[#2A1810] bg-white border border-[#E8DFD5] hover:border-[#C5A059] hover:bg-[#FAF7F2] rounded-full transition-all shadow-2xs cursor-pointer"
+              title="Open Inquiry Bag"
+            >
+              <ShoppingBag className="w-3.5 h-3.5 text-[#C5A059]" />
+              <span>Bag</span>
+              {totalItemsCount > 0 && (
+                <span className="w-5 h-5 rounded-full bg-[#C5A059] text-[#2A1810] text-[10px] font-extrabold flex items-center justify-center -mr-1">
+                  {totalItemsCount}
+                </span>
+              )}
             </button>
 
             <a
@@ -144,12 +161,25 @@ export const Navbar: React.FC<NavbarProps> = ({
               aria-label="Enquire with Shree Mewa on WhatsApp"
             >
               <MessageCircle className="w-4 h-4 fill-white" />
-              <span>Enquire on WhatsApp</span>
+              <span>WhatsApp</span>
             </a>
           </div>
 
-          {/* Mobile Hamburger Button */}
+          {/* Mobile Actions: Bag + WhatsApp + Hamburger */}
           <div className="flex items-center gap-2 lg:hidden">
+            <button
+              onClick={openCart}
+              className="relative inline-flex items-center justify-center p-2 rounded-full bg-white border border-[#E8DFD5] text-[#2A1810] shadow-2xs"
+              aria-label="Open Inquiry Bag"
+            >
+              <ShoppingBag className="w-4 h-4 text-[#C5A059]" />
+              {totalItemsCount > 0 && (
+                <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-[#C5A059] text-[#2A1810] text-[9px] font-extrabold flex items-center justify-center">
+                  {totalItemsCount}
+                </span>
+              )}
+            </button>
+
             <a
               href={getWhatsAppLink()}
               target="_blank"

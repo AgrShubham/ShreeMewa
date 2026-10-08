@@ -1,7 +1,8 @@
 import React from 'react';
-import { Sparkles, MessageCircle, Gift, ChevronRight, Eye, Tag } from 'lucide-react';
+import { Sparkles, MessageCircle, Gift, ChevronRight, Eye, ShoppingBag } from 'lucide-react';
 import { GiftCollectionItem } from '../../types';
 import { getWhatsAppLink } from '../../data/business';
+import { useCart } from '../../context/CartContext';
 
 interface GiftCardProps {
   gift: GiftCollectionItem;
@@ -9,6 +10,7 @@ interface GiftCardProps {
 }
 
 export const GiftCard: React.FC<GiftCardProps> = ({ gift, onSelect }) => {
+  const { addGift } = useCart();
   const whatsappMsg = `Hello Shree Mewa, I am interested in inquiring about the "${gift.name}" (${gift.categoryLabel}, price range: ${gift.priceRange || 'on request'}). Please share box customization options and availability for Ramgarh delivery.`;
 
   return (
@@ -29,8 +31,8 @@ export const GiftCard: React.FC<GiftCardProps> = ({ gift, onSelect }) => {
           <button
             onClick={(e) => {
               e.stopPropagation();
-              onSelect(gift)}
-            }
+              onSelect(gift);
+            }}
             className="w-full py-2.5 px-4 bg-white/95 backdrop-blur-sm text-[#2A1810] text-xs font-semibold rounded-xl flex items-center justify-center gap-1.5 border border-[#E8DFD5] hover:border-[#C5A059] shadow-sm hover:bg-[#FAF7F2] transition-colors cursor-pointer"
           >
             <Eye className="w-3.5 h-3.5 text-[#C5A059]" />
@@ -48,7 +50,7 @@ export const GiftCard: React.FC<GiftCardProps> = ({ gift, onSelect }) => {
 
         {/* MOQ Badge */}
         {gift.moqText && (
-          <div className="absolute bottom-3 right-3 bg-white/90 backdrop-blur-xs px-2 py-0.5 rounded-full border border-[#E8DFD5] text-[9px] font-bold text-[#2A1810]">
+          <div className="absolute bottom-3 right-3 bg-white/90 backdrop-blur-xs px-2.5 py-0.5 rounded-full border border-[#E8DFD5] text-[9px] font-bold text-[#2A1810] shadow-xs">
             {gift.moqText.split('/')[0]}
           </div>
         )}
@@ -107,24 +109,35 @@ export const GiftCard: React.FC<GiftCardProps> = ({ gift, onSelect }) => {
         </div>
 
         {/* Card Footer Actions */}
-        <div className="pt-3 border-t border-[#E8DFD5] flex items-center justify-between gap-3">
+        <div className="pt-3 border-t border-[#E8DFD5] flex items-center justify-between gap-2">
           <button
             onClick={() => onSelect(gift)}
-            className="text-xs font-medium text-[#5C3A21] hover:text-[#2A1810] inline-flex items-center gap-1 transition-colors cursor-pointer"
+            className="text-xs font-medium text-[#5C3A21] hover:text-[#2A1810] inline-flex items-center gap-0.5 transition-colors cursor-pointer"
           >
-            <span>Customization</span>
-            <ChevronRight className="w-3.5 h-3.5" />
+            <span>Custom</span>
+            <ChevronRight className="w-3 h-3" />
           </button>
 
-          <a
-            href={getWhatsAppLink(whatsappMsg)}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 px-3.5 py-2 bg-[#25D366]/15 hover:bg-[#25D366] text-[#1E7E34] hover:text-white rounded-xl text-xs font-semibold transition-all duration-200"
-          >
-            <MessageCircle className="w-3.5 h-3.5 fill-current" />
-            <span>Enquire Box</span>
-          </a>
+          <div className="flex items-center gap-1.5">
+            <button
+              onClick={() => addGift(gift, 1)}
+              className="inline-flex items-center gap-1 px-2.5 py-1.5 bg-[#FAF7F2] hover:bg-[#E8DFD5] text-[#2A1810] border border-[#E8DFD5] hover:border-[#C5A059] rounded-lg text-xs font-bold transition-all cursor-pointer shadow-2xs"
+              title="Add Hamper to Inquiry Bag"
+            >
+              <ShoppingBag className="w-3.5 h-3.5 text-[#C5A059]" />
+              <span>+ Bag</span>
+            </button>
+
+            <a
+              href={getWhatsAppLink(whatsappMsg)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 px-2.5 py-1.5 bg-[#25D366]/15 hover:bg-[#25D366] text-[#1E7E34] hover:text-white rounded-lg text-xs font-semibold transition-all duration-200"
+            >
+              <MessageCircle className="w-3.5 h-3.5 fill-current" />
+              <span>Enquire</span>
+            </a>
+          </div>
         </div>
       </div>
     </div>

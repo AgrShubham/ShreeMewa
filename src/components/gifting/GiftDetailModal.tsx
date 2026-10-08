@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
-import { X, CheckCircle2, MessageCircle, Sparkles, Gift, Layers, Calendar, Tag } from 'lucide-react';
+import { X, CheckCircle2, MessageCircle, Sparkles, Gift, Layers, Calendar, Tag, ShoppingBag } from 'lucide-react';
 import { GiftCollectionItem } from '../../types';
 import { BUSINESS_CONFIG, getWhatsAppLink } from '../../data/business';
+import { useCart } from '../../context/CartContext';
 
 interface GiftDetailModalProps {
   gift: GiftCollectionItem | null;
@@ -9,6 +10,7 @@ interface GiftDetailModalProps {
 }
 
 export const GiftDetailModal: React.FC<GiftDetailModalProps> = ({ gift, onClose }) => {
+  const { addGift } = useCart();
   useEffect(() => {
     if (!gift) return;
     const originalOverflow = document.body.style.overflow;
@@ -159,12 +161,24 @@ export const GiftDetailModal: React.FC<GiftDetailModalProps> = ({ gift, onClose 
             </div>
 
             {/* CTAs */}
-            <div className="space-y-3 pt-4 border-t border-[#E8DFD5]">
+            <div className="space-y-2.5 pt-4 border-t border-[#E8DFD5]">
+              <button
+                type="button"
+                onClick={() => {
+                  addGift(gift, gift.minOrderQuantity || 1);
+                  onClose();
+                }}
+                className="w-full py-3 px-4 bg-[#C5A059] hover:bg-[#B38E46] text-[#2A1810] font-bold text-xs rounded-xl flex items-center justify-center gap-2 shadow-sm transition-all cursor-pointer"
+              >
+                <ShoppingBag className="w-4 h-4 text-[#2A1810]" />
+                <span>Add Hamper to Inquiry Bag</span>
+              </button>
+
               <a
                 href={getWhatsAppLink(whatsappMsg)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full py-3 px-4 bg-[#25D366] hover:bg-[#20ba59] text-white text-sm font-semibold rounded-xl flex items-center justify-center gap-2 shadow-sm transition-all"
+                className="w-full py-2.5 px-4 bg-[#25D366] hover:bg-[#20ba59] text-white text-xs font-semibold rounded-xl flex items-center justify-center gap-2 shadow-xs transition-all"
               >
                 <MessageCircle className="w-4 h-4 fill-white" />
                 <span>Enquire Gifting on WhatsApp</span>
