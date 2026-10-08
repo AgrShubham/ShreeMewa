@@ -64,7 +64,12 @@ export const Logo: React.FC<LogoProps> = ({
       {/* Brand Logo SVG */}
       <img
         src="/assets/shree-mewa.svg"
-        alt="Shree Mewa"
+        alt=""
+        aria-hidden="true"
+        onError={(e) => {
+          // Graceful fallback to PNG if SVG encounters any rendering issue
+          e.currentTarget.src = '/assets/shree-mewa-logo.png';
+        }}
         style={{
           height: currentSize.imgH,
           width: currentSize.imgH,
