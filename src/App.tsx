@@ -14,6 +14,8 @@ import { CatalogueModal } from './components/catalogue/CatalogueModal';
 import { CartDrawer } from './components/cart/CartDrawer';
 import { ViewLoadingFallback } from './components/ui/ViewLoadingFallback';
 import { CartProvider } from './context/CartContext';
+import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 
 // Eager load HomeView for optimal initial Largest Contentful Paint (LCP)
 import { HomeView } from './views/HomeView';
@@ -96,7 +98,17 @@ export default function App() {
       contact: 'Contact Us & Store Inquiries | Shree Mewa Ramgarh',
       catalogue: 'Digital Gifting Lookbook & Festive Catalogue | Shree Mewa',
     };
-    document.title = titles[activePage] || titles.home;
+    const pageTitle = titles[activePage] || titles.home;
+    document.title = pageTitle;
+
+    // Dispatch SPA page_view event to Google Analytics (GA4)
+    if (typeof window !== 'undefined' && 'gtag' in window && typeof (window as unknown as { gtag: Function }).gtag === 'function') {
+      (window as unknown as { gtag: Function }).gtag('event', 'page_view', {
+        page_title: pageTitle,
+        page_path: activePage === 'home' ? '/' : `/#${activePage}`,
+        page_location: window.location.href,
+      });
+    }
   }, [activePage]);
 
   const navigateTo = (page: ActivePage) => {
@@ -167,6 +179,10 @@ export default function App() {
           isOpen={isCatalogueModalOpen}
           onClose={() => setIsCatalogueModalOpen(false)}
         />
+
+        {/* Vercel Web Analytics & Real-Time Performance Insights */}
+        <Analytics />
+        <SpeedInsights />
       </div>
     </CartProvider>
   );
